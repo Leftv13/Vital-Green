@@ -1,0 +1,570 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+}
+
+h1, h2, p{
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 4rem;
+    position: relative;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#navbar{
+    
+    position: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffa37f;
+    height: 4rem;
+    z-index: 10;
+    /* Esto es para superponerlo encima de todo, el documento normalmente esta en zindex 0 */
+}
+
+#shopicon{
+width: 4rem;
+height: 3rem;
+background-color: #e5e7eb;
+padding: 0.5rem;
+border-radius: 0.5rem;
+font-weight: 700;
+/* el font weight es para darle grosor a la fuente */
+cursor: pointer;
+transition: all 0.3s ease-in;
+/* Esto es para ralentizar el tiempo en el que se va a aplicar el estilo */
+color: #7f8285;
+}
+
+#shopicon:hover{
+    color: #ffa37f;
+}
+
+#navContent{
+    height: inherit;
+    /* Hereda la altura del elemento padre */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    /* el mxwidth y margin 0 auto es para usuarios que tienen pantallas muy anchas, entre mas grande la pantalla mas al centro van a estar los elementos, con uan especie de margen a los lados */
+    padding: 1rem;
+    position: relative;
+    /* Si le quederemos dar position absolute al hijo, el padre debe llevar position relative */
+}
+
+#navtitle{
+    color: white;
+}
+
+.cart{
+    position: absolute;
+    top: 4rem;
+    width: 50%;
+    right: 0;
+    height: 0;
+    background-color: #e4e4e7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    transition: all 0.3s ease-in;
+    
+}
+
+table{
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td{
+    font-size: 0.6rem;
+    height: 6rem;
+    font-weight: 700;
+    /* padding: 1rem 0 ; */
+    /* no silve */
+    /* si utilizo 2 propriedades los toma como; pos1 arriba-abajo, pos2 der-izq */
+    border-bottom: 1px solid #424447;
+}
+
+thead{
+    height: 2rem;
+    border-bottom: 1px solid #424447;
+
+}
+
+#removeTable{
+cursor: pointer;
+padding: 1rem;
+border-radius: 0.5rem;
+background-color: #ffa37f;
+color: white;
+font-weight: 700;
+margin-top: 1rem;
+transition: all 0.2s ease-in;
+
+}
+
+
+#removeTable:hover{
+background-color: #e89777;
+}
+
+.showcart{
+    height: 25rem;
+    padding: 1rem;
+}
+
+
+#heroIcon{
+    width: 4rem;
+    height: 3rem;
+    padding: 0.5rem;
+    color: #ffa37f;
+}
+
+#hero{
+    
+    height:  calc(50vh - 4rem);
+    /* Aqui le estoy diciendo que ocupe el 100% de la pantalla menos los 4rem de la navbar */
+    background-image: url("https://www.evolutionreal.mx/cdn/shop/articles/blog_EVO_imag.001_cc68a657-2dd7-40b5-a8dc-bbba4be0bc8f.jpg?v=1672789107");
+    background-position: center;
+    background-size: cover;
+    padding: 0 1rem;
+}
+
+#heroContent{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    color: white;
+}
+
+#heroTitle{
+    font-size: 1.70rem;
+    width: 100%;
+   
+}
+
+#heroSubTitle{
+    font-size: 1rem;
+    text-align: center;
+}
+
+#heroInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(235, 231, 231);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    
+}
+
+input{
+    width: 80%;
+    background-color: transparent;
+    outline: none;
+    font-size: 0.8rem;
+}
+
+.infoIcon{
+    width: 3rem;
+    height: 2rem;
+    color: white;
+}
+
+#info
+{ 
+    padding: 1rem;
+    background-color: #df5620;
+   
+}
+
+#tbimg{
+    width: 25%;
+    height: 100%;
+}
+
+#infoContainer{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     max-width: 80rem;
+     gap: 2rem;
+     margin: 0 auto;
+}
+
+.infoDiv{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pdImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#products{
+    min-height: 100vh;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#prodContainer{
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+#prodTitle{
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+#prodList{
+    margin: 0 auto;
+    padding: 0; 
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    
+}
+
+.prodItem{
+    background-color: #f4f4f5;
+    border-radius: 0.5rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    transform: scale(1);
+    transition: all 0.2s ease-in;
+    box-shadow: var(--shadow-md); /* 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) */
+}
+
+.prodItem:hover{
+    transform: scale(1.01);
+   
+}
+
+.prodImg{
+    height: 40%;
+}
+
+.prodInfo{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-evenly;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.infoTitle, .infoPrice{
+    font-weight: 700;
+}
+
+.prodBtn{
+padding: 1rem;
+border-radius: 0.5rem;
+font-weight: 700;
+background-color: #e44f14;
+color: white;
+cursor: pointer;
+transition: all 0.2s ease-in;
+}
+
+
+.prodBtn:hover{
+    background-color: #d64106;
+}
+
+
+@media (max-width: 400px){
+    .cart{
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+
+
+    #hero{
+    
+        height:  calc(100vh - 4rem);
+        /* Aqui le estoy diciendo que ocupe el 100% de la pantalla menos los 4rem de la navbar */
+        background-image: url("https://media.glamour.mx/photos/651520d3d1935d9b14952b7c/4:3/w_1908,h_1431,c_limit/tomar-jugo-verde.jpg");
+        background-position: center;
+        background-size: cover;
+        padding: 0 1rem;
+    }
+    
+    #heroContent{
+        height: 100%;
+        display: flex;
+         max-width: 80rem;
+         margin: 0 auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        color: black;
+    }
+    
+    #heroTitle{
+        font-size: 1.70rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    #heroSubTitle{
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    #heroInput{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: rgb(235, 231, 231);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        width: 80%;
+    }
+    
+    input{
+        width: 80%;
+        background-color: transparent;
+        outline: none;
+        font-size: 0.8rem;
+    }
+
+    .pdImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#products{
+    min-height: 100vh;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#prodContainer{
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+#prodTitle{
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+#prodList{
+    display: flex;
+    flex-direction: column;
+    
+    margin: 0;
+    padding: 0; 
+    list-style: none;
+    justify-self: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.prodItem{
+    background-color: #f4f4f5;
+    border-radius: 0.5rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transform: scale(1);
+    transition: all 0.2s ease-in;
+}
+
+.prodItem:hover{
+    transform: scale(1.01);
+   
+}
+
+.prodImg{
+    height: 40%;
+}
+
+.prodInfo{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-evenly;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.infoTitle, .infoPrice{
+    font-weight: 700;
+}
+
+.infoDiv{
+    border-bottom: 1px solid white;
+}
+
+.prodBtn{
+padding: 1rem;
+border-radius: 0.5rem;
+font-weight: 700;
+background-color: #e44f14;
+color: white;
+cursor: pointer;
+transition: all 0.2s ease-in;
+}
+
+#infoContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    gap: 1rem;
+    margin: 0 auto;
+    font-size: 1rem;
+    
+}
+
+
+.prodBtn:hover{
+    background-color: #d64106;
+}
+
+.pdImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#products{
+    min-height: 100vh;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#prodContainer{
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+#prodTitle{
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+#prodList{
+    margin: 0;
+    padding: 0; 
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.prodItem{
+    background-color: #f4f4f5;
+    border-radius: 0.5rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transform: scale(1);
+    transition: all 0.2s ease-in;
+}
+
+.prodItem:hover{
+    transform: scale(1.01);
+   
+}
+
+.prodImg{
+    height: 40%;
+}
+
+.prodInfo{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-evenly;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+.infoTitle, .infoPrice{
+    font-weight: 700;
+}
+
+.prodBtn{
+padding: 1rem;
+border-radius: 0.5rem;
+font-weight: 700;
+background-color: #e44f14;
+color: white;
+cursor: pointer;
+transition: all 0.2s ease-in;
+}
+
+
+.prodBtn:hover{
+    background-color: #d64106;
+}
+
+}
+
+
+    
+    
+
+
+
+
