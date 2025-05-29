@@ -3,7 +3,8 @@ const  shopIcon = document.querySelector(`#shopicon`);
 const cart = document.querySelector(`.cart`);
 const table = document.querySelector(`#tableBody`);
 const btn = document.querySelectorAll(`.prodBtn`);
-const rtable = document.querySelector(`#removeTable`)
+const rtable = document.querySelector(`#removeTable`);
+const goUp = document.querySelector(`#goUp`);
 
 
 btn.forEach(btn => {
@@ -73,3 +74,20 @@ rtable.addEventListener(`click`, e => {
 table.innerHTML = ""
 })
 //all events have a function
+
+goUp.style.display = `none`;
+window.addEventListener(`scroll`, () =>{
+    if(this.scrollY > 500){
+        goUp.style.display = `block`
+    }else{
+        goUp.style.display = `none`;
+    }
+
+})
+
+goUp.onclick = function ( ) {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
+  <link href="windows_15242.ico" type="image/x-icon">
+  <title>Log In</title>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="navContent">
+            <div id="navleft">
+                <img id="logo" src="/imgs/VITAL GREEN-SIN FONDO.png" alt="logoimg">
+            <h1 id="navtitle">Vital Green </h1>
+            </div>
+    
+            <div id="navright">
+                <a href="/Html/about.html"><p class="alinks">About</p></a>
+                <a href="/Html/index.html"><p class="alinks">Store</p></a>
+                <a href="/Html/logIn.html"><p class="alinks">Log In</p></a>
+                
+                 
+            </div>
+        </div>
+    </nav>
+
+  <form id="form">
+    <h1 id="formTitle">Inicio de Sesion</h1>
+   
+
+    <div id="formdiv">
+        <label for="title">Correo electronico</label>
+      <input type="email" id="email" class="formInputs" placeholder="E-mail">
+
+      <p class="information">
+        Tiene que seguir el siguiente formato: myawesomemail@email.com
+      </p>
+
+    </div>
+    
+     
+      
+    </div>
+
+    <div id="formdiv">
+        <label for="title">Contrasena</label>
+      <input type="password" id="password" class="formInputs" placeholder="Password">
+      <p class="information">
+        Debe incluir al menos un numero y una letra, minimo 6, maximo 16 caracteres.
+      </p>
+    </div>
+
+
+
+
+    <div class="btn-container" style="display: flex; justify-content: center;">
+    <button disabled id="form-btn">Submit</button>
+
+    </div>
+
+    <p id="aLogIn">Aun no tienes cuenta? <a href="/Html/register.html"> Registrate</a></p>
+
+  </form>
+
+
+<script src="/JS/logInScript.js"></script>
+</body>
+</html>

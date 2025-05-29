@@ -21,7 +21,6 @@ body{
 }
 
 #navbar{
-    
     position: 0;
     position: fixed;
     top: 0;
@@ -31,7 +30,68 @@ body{
     background-color: #ffa37f;
     height: 4rem;
     z-index: 10;
-    /* Esto es para superponerlo encima de todo, el documento normalmente esta en zindex 0 */
+    /* Esto es para superponerlo encima de todo, by default the document is set to z-index 0 */
+}
+
+#logo{
+width: 4rem;
+height: 4rem;
+font-weight: 700;
+}
+
+#navleft{
+display: flex;
+flex-direction: row;
+text-align: center;
+align-items: center;
+gap: 1rem;
+}
+
+#navright{
+    display: flex;
+flex-direction: row;
+text-align: center;
+align-items: center;
+gap: 2rem;
+}
+
+.alinks{
+    color: white;
+    text-decoration: none;
+}
+
+#goUp{
+    background-color: #ea784a;
+    height: 10%;
+    width: 5%;
+    position: 0;
+    position: fixed; 
+    right:0;
+    bottom: 0;
+    z-index: 10;
+    padding: 0.1rem;
+    border-radius: 100%;
+    flex-direction: row-reverse;
+    margin: 1.2rem;
+    color: white;
+}
+
+#goUp:hover{
+    background-color: #ea7648;
+    cursor: pointer;
+    height: 11.5%;
+    width: 5.5%;
+    transition: all 0.1s ease-in;
+}
+
+.alinks:hover{
+    font-size: 1.08rem;
+    transition: all 0.2s ease-in;
+    color: #e6dddd;
+}
+
+a{
+    text-decoration: none;
 }
 
 #shopicon{
@@ -69,6 +129,12 @@ color: #7f8285;
 
 #navtitle{
     color: white;
+    text-decoration: none;
+}
+
+.delBtn{
+    height: 3rem;
+    width: 3rem;
 }
 
 .cart{
@@ -307,6 +373,8 @@ transition: all 0.2s ease-in;
 }
 
 
+
+
 .prodBtn:hover{
     background-color: #d64106;
 }
@@ -318,6 +386,17 @@ transition: all 0.2s ease-in;
         font-size: 0.8rem;
     }
 
+    #goUp{
+       
+        height: 8%;
+        width: 15%;
+        margin: 0.8rem;
+    }
+
+    #goUp:hover{
+        height: 9%;
+        width: 17%;
+    }
 
 
     #hero{
@@ -557,6 +636,14 @@ transition: all 0.2s ease-in;
 
 .prodBtn:hover{
     background-color: #d64106;
+}
+#navtitle{
+    display: none;
+
+}
+
+#navright{
+    gap: 1rem;
 }
 
 }
