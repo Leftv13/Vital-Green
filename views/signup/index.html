@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="../styles/l&r.css">
   <link href="windows_15242.ico" type="image/x-icon">
-  <title>Log In</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Registro</title>
+
 </head>
 <body>
 
@@ -18,9 +21,9 @@
     
             <div id="navright">
     
-              <a href="/Html/about.html"><p class="alinks">About</p></a>
-              <a href="/Html/index.html"><p class="alinks">Store</p></a>
-              <a href="/Html/logIn.html"><p class="alinks">Log In</p></a>
+              <a href="../home/index.html"><p class="alinks">About</p></a>
+              <a href="../store/index.html"><p class="alinks">Store</p></a>
+              <a href="../login/index.html"><p class="alinks">Log In</p></a>
     
                 
                  
@@ -28,9 +31,18 @@
         </div>
     </nav>
 
+    <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
+
   <form id="form">
-    <h1 id="formTitle">Registro de Usuario</h1>
+    <h1 id="formTitle">Registro</h1>
    
+    <div id="formdiv">
+      <label for="title">Nombre y Apellido</label>
+    <input type="name" id="name" class="formInputs" placeholder="Tu nombre">
+
+    <p class="information">
+      Tiene que seguir el siguiente formato: Mi Nombre
+    </p>
 
     <div id="formdiv">
         <label for="title">Correo electronico</label>
@@ -41,6 +53,10 @@
       </p>
 
     </div>
+
+
+
+  </div>
 
    
 
@@ -65,7 +81,7 @@
         <label for="title">Contrasena</label>
       <input type="password" id="password" class="formInputs" placeholder="Password">
       <p class="information">
-        It must include a number and a letter. Min 6, max 24 characters
+        Debe incluir un numero y una letra. Min 6, max 24 caracteres.
       </p>
     </div>
 
@@ -75,20 +91,22 @@
       <input type="password" id="confirm-password" class="formInputs" placeholder="Confirm Password">
 
       <p class="information">
-        It must be the same password.
+        Debe coincidir con la contrasena.
       </p>
     </div>
+
+    <p id="aLogIn">Ya tienes una cuenta? <a href="../login/index.html">Inicia sesion</a></p>
 
     <div class="btn-container" style="display: flex; justify-content: center;">
     <button disabled id="form-btn">Submit</button>
 
     </div>
 
-    <p id="aLogIn">Ya tienes una cuenta? <a href="/Html/logIn.html">Inicia sesion</a></p>
+    
 
   </form>
 
 
-<script src="/JS/registerScript.js"></script>
+<script type="module" src="./index.js"></script>
 </body>
 </html>

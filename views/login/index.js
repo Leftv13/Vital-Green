@@ -7,7 +7,8 @@ const emailRegex =       /^\S+@\S+\.\S+$/;
 const emailInput = document.querySelector(`#email`);
 const passwordInput = document.querySelector(`#password`)
 const formBtn = document.querySelector(`#form-btn`)
-const form = document.querySelector(`#form`)
+const form = document.querySelector(`#formLogin`)
+const errorText = document.querySelector("#error-text");
 
 
 
@@ -62,32 +63,39 @@ emailValidation = emailRegex.test(e.target.value);
         
         })
 
-        
+    
 
-            form.addEventListener(`submit`, e =>{
-                e.preventDefault()
-                // esto es para que la pagina no vuelva a cargar
-                const user ={
-                    email : emailInput.value,
-                    password : passwordInput.value
-                }
-                console.log(user)
-                //esto es para que se muestre en la consola
-            })
+        //LOGIN LOGIC
 
-            goUp.style.display = `none`;
-window.addEventListener(`scroll`, () =>{
-    if(this.scrollY > 500){
-        goUp.style.display = `block`
-    }else{
-        goUp.style.display = `none`;
-    }
+        const PAGE_URL = window.location.origin; // Get the current origin (protocol + hostname + port)
 
-})
 
-goUp.onclick = function ( ) {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    })
-}
+form.addEventListener("submit", async (event) => {
+  try {
+    event.preventDefault();
+    const user = {
+      email: emailInput.value,
+      password: passwordInput.value,
+    };
+    await axios.post(`${PAGE_URL}/api/login`, user, { withCredentials: true });
+    window.location.pathname = `/store/`;
+  } catch (error) {
+    console.log(error);
+    errorText.innerHTML = error.response.data.error;
+  }
+});
+
+const validation = () => {
+  let isEnabled = emailValidation && passwordValidation;
+  formBtn.disabled = !isEnabled;
+};
+
+emailInput.addEventListener("input", (e) => {
+  emailValidation = emailRegex.test(e.target.value);
+  validation();
+});
+
+passwordInput.addEventListener("input", (e) => {
+  passwordValidation = e.target.value.length >= 1;
+  validation();
+});

@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="../styles/l&r.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link href="windows_15242.ico" type="image/x-icon">
-  <title>Log In</title>
+  <title>Iniciar Sesion</title>
 </head>
 <body>
 
     <nav id="navbar">
         <div id="navContent">
             <div id="navleft">
-                <img id="logo" src="/imgs/VITAL GREEN-SIN FONDO.png" alt="logoimg">
+              <img src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
             <h1 id="navtitle">Vital Green </h1>
-            </div>
-    
+            </div>    
             <div id="navright">
-                <a href="/Html/about.html"><p class="alinks">About</p></a>
-                <a href="/Html/index.html"><p class="alinks">Store</p></a>
-                <a href="/Html/logIn.html"><p class="alinks">Log In</p></a>
-                
-                 
+                <a href=""><p class="alinks">About</p></a>
+                <a href=""><p class="alinks">Store</p></a>
+                <a href="/login"><p class="alinks">Log In</p></a>             
             </div>
         </div>
     </nav>
+<div class="container">
 
-  <form id="form">
+
+  <form id="formLogin">
     <h1 id="formTitle">Inicio de Sesion</h1>
    
 
@@ -42,7 +43,7 @@
     
      
       
-    </div>
+    
 
     <div id="formdiv">
         <label for="title">Contrasena</label>
@@ -60,11 +61,16 @@
 
     </div>
 
-    <p id="aLogIn">Aun no tienes cuenta? <a href="/Html/register.html"> Registrate</a></p>
+    <p id="aLogIn">Aun no tienes cuenta? <a href="/signup"> Registrate</a></p>
 
   </form>
 
+  <img src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
 
-<script src="/JS/logInScript.js"></script>
+</div>
+
+<p id="error-text" class="text-sm text-red-600"></p>
+
+<script src="./index.js"></script>
 </body>
 </html>
