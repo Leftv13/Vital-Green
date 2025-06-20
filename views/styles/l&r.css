@@ -26,7 +26,7 @@ body{
 
 .container{
     display: flex;
-   justify-content: space-between;
+   justify-content: space-around;
 
 }
 
@@ -177,6 +177,15 @@ cursor: not-allowed;
     /* Esto es para superponerlo encima de todo, by default the document is set to z-index 0 */
 }
 
+#logoImg{
+    width: 35%;
+    height: 35%;
+}
+
+#logoImgNav{
+width: 5%;
+}
+
 #logo{
 width: 4rem;
 height: 4rem;
@@ -260,6 +269,14 @@ a{
 
 @media ( max-width: 700px ) {
 
+    #logoImg{
+      display: none;
+    }
+
+    #logoImgNav{
+        width: 40%;
+        }
+
     #navtitle{
         display: none;
     }
@@ -286,7 +303,7 @@ a{
     }
 
     #formLogin{
-        margin-top: 8.55rem;
+       
         width: 100%;
         font-size: small;
     }
