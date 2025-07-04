@@ -15,7 +15,7 @@
     <nav id="navbar">
         <div id="navContent">
             <div id="navleft">
-                <img id="logo" src="/imgs/VITAL GREEN-SIN FONDO.png" alt="logoimg">
+              <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
             <h1 id="navtitle">Vital Green </h1>
             </div>
     
@@ -33,80 +33,88 @@
 
     <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
 
-  <form id="form">
-    <h1 id="formTitle">Registro</h1>
-   
-    <div id="formdiv">
-      <label for="title">Nombre y Apellido</label>
-    <input type="name" id="name" class="formInputs" placeholder="Tu nombre">
+  <div class="container" style="justify-content: space-around;">
 
-    <p class="information">
-      Tiene que seguir el siguiente formato: Mi Nombre
-    </p>
-
-    <div id="formdiv">
-        <label for="title">Correo electronico</label>
-      <input type="email" id="email" class="formInputs" placeholder="E-mail">
-
+    <form id="form" style="height: 110vh; width: 50%;">
+      <h1 id="formTitle">Registro</h1>
+     
+      <div id="formdiv">
+        <label for="title">Nombre y Apellido</label>
+      <input type="name" id="name" class="formInputs" placeholder="Tu nombre">
+  
       <p class="information">
-        Tiene que seguir el siguiente formato: myawesomemail@email.com
+        Tiene que seguir el siguiente formato: Mi Nombre
       </p>
-
+  
+      <div id="formdiv">
+          <label for="title">Correo electronico</label>
+        <input type="email" id="email" class="formInputs" placeholder="E-mail">
+  
+        <p class="information">
+          Tiene que seguir el siguiente formato: myawesomemail@email.com
+        </p>
+  
+      </div>
+  
+  
+  
     </div>
+  
+     
+  
+     
+  
+      <div id="formdiv">
+          <label for="title">Numero de Telefono</label>
+        <div id="phoneContainer">
+         
+          <input type="tel" id="phone" class="formInputs" placeholder="Phone Number">
+        </div>
+        <p class="information">
+          Only numbers are valid. Min 6, max 16 characters
+        </p>
+      </div>
+      
+       
+        
+     
+  
+      <div id="formdiv">
+          <label for="title">Contrasena</label>
+        <input type="password" id="password" class="formInputs" placeholder="Password">
+        <p class="information">
+          Debe incluir un numero y una letra. Min 6, max 24 caracteres.
+        </p>
+      </div>
+  
+  
+      <div id="formdiv">
+          <label for="title">Confirmar Contrasena</label>
+        <input type="password" id="confirm-password" class="formInputs" placeholder="Confirm Password">
+  
+        <p class="information">
+          Debe coincidir con la contrasena.
+        </p>
+      </div>
+  
+      <p id="aLogIn">Ya tienes una cuenta? <a class="aRef" href="../login/index.html">Inicia sesion</a></p>
+  
+      <div class="btn-container" style="display: flex; justify-content: center;">
+      <button disabled id="form-btn">Submit</button>
+  
+      </div>
+  
+      
+  
+    </form>
 
+    <img id="logoImg" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green" style="display: flex; align-self: center; margin-top: 0;">
 
 
   </div>
 
-   
-
-   
-
-    <div id="formdiv">
-        <label for="title">Numero de Telefono</label>
-      <div id="phoneContainer">
-       
-        <input type="tel" id="phone" class="formInputs" placeholder="Phone Number">
-      </div>
-      <p class="information">
-        Only numbers are valid. Min 6, max 16 characters
-      </p>
-    </div>
-    
-     
-      
-    </div>
-
-    <div id="formdiv">
-        <label for="title">Contrasena</label>
-      <input type="password" id="password" class="formInputs" placeholder="Password">
-      <p class="information">
-        Debe incluir un numero y una letra. Min 6, max 24 caracteres.
-      </p>
-    </div>
-
-
-    <div id="formdiv">
-        <label for="title">Confirmar Contrasena</label>
-      <input type="password" id="confirm-password" class="formInputs" placeholder="Confirm Password">
-
-      <p class="information">
-        Debe coincidir con la contrasena.
-      </p>
-    </div>
-
-    <p id="aLogIn">Ya tienes una cuenta? <a href="../login/index.html">Inicia sesion</a></p>
-
-    <div class="btn-container" style="display: flex; justify-content: center;">
-    <button disabled id="form-btn">Submit</button>
-
-    </div>
-
-    
-
-  </form>
-
 
 <script type="module" src="./index.js"></script>
+<script type="module" src="../components/notification.js"></script>
 </body>
 </html>

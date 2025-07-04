@@ -2,121 +2,115 @@
 
 const express = require('express');
 const Product = require('../models/product'); 
-const { protect, authorizeAdmin } = require('../middleware/auth'); 
-const router = express.Router(); 
+const productRouter = express.Router(); 
+const { protect, authorizeAdmin } = require('../middleware/auth')
 
-// ==============  Controller logic (Funtions) ==================
-//Get all products
-const getProducts = async (req, res) => {
+
+//GET
+productRouter.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
-    res.json(products);
+    return res.json(products); 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error interno del servidor al obtener productos' });
+    return res.status(500).json({ message: 'Error interno del servidor al obtener productos' });
   }
-};
+});
 
-//Get products by id
-const getProductById = async (req, res) => {
+// GET a single product by id and shows it to the user in the form (used for PUT)
+productRouter.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).json({ message: 'Producto no encontrado' });
+
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
     }
+
+    return res.json(product);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error interno del servidor al obtener el producto' });
+    console.error('Error al obtener el producto:', error);
+    return res.status(500).json({ message: 'Error interno del servidor al obtener el producto' });
   }
-};
+});
 
-//Creating a new product
-const createProduct = async (req, res) => {
-  const { name, ingredients, price, weight_g, stock, image_url, category } = req.body;
+//POST
+productRouter.post('/', protect, authorizeAdmin, async (req, res) => {
+  const { name, price, image_url, description, stock} = req.body; 
 
-  if (!name || !price || !stock || !category) {
+  if (!name || !price || !image_url || !description || stock === undefined || stock === null){ 
     return res.status(400).json({ message: 'Campos obligatorios faltantes!' });
   }
 
   try {
     const product = new Product({
+
       name,
-      ingredients,
       price,
-      weight_g,
+      description,
       stock,
       image_url,
-      category,
+
     });
 
     const createdProduct = await product.save();
-    res.status(201).json(createdProduct);
+    return res.status(201).json({ message: "¡Producto creado con éxito!"}); 
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error interno del servidor al crear el producto', error: error.message });
+    return res.status(500).json({ message: 'Error interno del servidor al crear el producto', error: error.message });
   }
-};
+});
 
-// update a product
+// PUT Update a product by ID
+productRouter.put('/:id', protect, authorizeAdmin, async (req, res) => {
+  const { name, price, image_url, description, stock } = req.body;
 
-const updateProduct = async (req, res) => {
-  const { name, ingredients, price, weight_g, stock, image_url, category, is_available } = req.body;
+ 
+  if (!name || !price || !image_url || !description || stock === undefined || stock === null) {
+    return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
+  }
 
   try {
     const product = await Product.findById(req.params.id);
 
-    if (product) {
-      product.name = name || product.name;
-      product.description = description || product.description;
-      product.ingredients = ingredients || product.ingredients;
-      product.price = price || product.price;
-      product.weight_g = weight_g || product.weight_g;
-      product.stock = stock !== undefined ? stock : product.stock;
-      product.image_url = image_url || product.image_url;
-      product.category = category || product.category;
-      product.is_available = is_available !== undefined ? is_available : product.is_available;
-      product.updated_at = Date.now();
-
-      const updatedProduct = await product.save();
-      res.json(updatedProduct);
-    } else {
-      res.status(404).json({ message: 'Producto no encontrado' });
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
     }
+
+
+    //Changes the original values according to the Ones in the inputs
+    
+    product.name = name;
+    product.price = price;
+    product.image_url = image_url;
+    product.description = description;
+    product.stock = stock;
+
+    const updatedProduct = await product.save(); //saves the product
+    return res.json({ message: 'Producto actualizado con exito!', product: updatedProduct });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error interno del servidor al actualizar el producto', error: error.message });
+    return res.status(500).json({ message: 'Error interno del servidor al actualizar el producto', error: error.message });
   }
-};
+});
 
-//Deleting a product
 
-const deleteProduct = async (req, res) => {
+
+//DELETE
+productRouter.delete('/:id', protect, authorizeAdmin, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
     if (product) {
-      await product.deleteOne();
-      res.json({ message: 'Producto eliminado' });
+      await product.deleteOne(); 
+      return res.json({ message: 'Producto eliminado' });
     } else {
-      res.status(404).json({ message: 'Producto no encontrado' });
+      return res.status(404).json({ message: 'Producto no encontrado' }); 
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error interno del servidor al eliminar el producto' });
+    return res.status(500).json({ message: 'Error interno del servidor al eliminar el producto' }); 
   }
-};
+});
 
-// ============== Route definition (Using the router) ==================
 
-//  public routes for users (for anyone to read, but not to use crud methods)
-router.get('/', getProducts);
-router.get('/:id', getProductById);
-
-// private routes for admins (complete CRUD)
-router.post('/', protect, authorizeAdmin, createProduct);
-router.put('/:id', protect, authorizeAdmin, updateProduct);
-router.delete('/:id', protect, authorizeAdmin, deleteProduct);
-
-module.exports = router;
+module.exports = productRouter;

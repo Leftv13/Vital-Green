@@ -133,8 +133,11 @@ color: #7f8285;
 }
 
 .delBtn{
-    height: 3rem;
-    width: 3rem;
+    background-color: rgb(223, 1, 1);
+    border-radius: 20px;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
 }
 
 .cart{
@@ -159,7 +162,7 @@ table{
 }
 
 td{
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     height: 6rem;
     font-weight: 700;
     /* padding: 1rem 0 ; */
@@ -648,10 +651,33 @@ transition: all 0.2s ease-in;
 
 }
 
+/* --- Estilos para el contador del carrito --- */
+.cart-icon-container {
+    position: relative; /* Necesario para posicionar el contador dentro */
+    display: flex;
+    align-items: center;
+}
+
+#cart-counter {
+    position: absolute;
+    top: -5px; /* Ajusta para posicionarlo verticalmente */
+    right: -8px; /* Ajusta para posicionarlo horizontalmente */
+    background-color: #e44f14; /* Un color que resalte */
+    color: white;
+    border-radius: 50%; /* Para hacerlo un círculo */
+    width: 1.5rem; /* Ancho fijo */
+    height: 1.5rem; /* Alto fijo */
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide-counter {
+    display: none; /* Clase para ocultar el contador */
+}
+
 
     
     
-
-
-
-

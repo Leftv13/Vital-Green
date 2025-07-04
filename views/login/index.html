@@ -11,6 +11,8 @@
 </head>
 <body>
 
+
+
     <nav id="navbar">
         <div id="navContent">
             <div id="navleft">
@@ -18,16 +20,17 @@
             <h1 id="navtitle">Vital Green </h1>
             </div>    
             <div id="navright">
-                <a href=""><p class="alinks">About</p></a>
-                <a href=""><p class="alinks">Store</p></a>
+                <a href="/"><p class="alinks">About</p></a>
+                <a href="/store"><p class="alinks">Store</p></a>
                 <a href="/login"><p class="alinks">Log In</p></a>             
             </div>
         </div>
     </nav>
-<div class="container">
+    <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
+<div class="container" style="height: 70%; justify-content: space-evenly;">
 
 
-  <form id="formLogin">
+  <form id="formLogin" height: 110%;>
     <h1 id="formTitle">Inicio de Sesion</h1>
    
 
@@ -54,23 +57,24 @@
     </div>
 
 
-
+    <p id="error-text" class="text-sm text-red-600"></p>
 
     <div class="btn-container" style="display: flex; justify-content: center;">
     <button disabled id="form-btn">Submit</button>
 
     </div>
 
-    <p id="aLogIn">Aun no tienes cuenta? <a href="/signup"> Registrate</a></p>
+    <p id="aLogIn">Aun no tienes cuenta? <a class="aRef" href="/signup"> Registrate</a></p>
 
   </form>
 
-  <img id="logoImg" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
+  <img id="logoImg" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green" style="display: flex; align-self: center; margin-top: 0;">
 
 </div>
 
-<p id="error-text" class="text-sm text-red-600"></p>
+
 
 <script src="./index.js"></script>
+<script type="module" src="../components/notification.js"></script>
 </body>
 </html>

@@ -8,11 +8,14 @@ border-width: 0;
 border-style: solid;
 }
 
+.hid{
+    display: none;
+}
 
 
 body{
     height: 100vh calc(-4);
-    background-color: #fff;
+    background-color: #ccdfc1;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0rem;
     height: 100vh;
@@ -25,26 +28,39 @@ body{
 }
 
 .container{
+    width: 100%;
+    height: 100%;
     display: flex;
-   justify-content: space-around;
+
 
 }
 
 #form{
-    margin-top: 4rem;
-    background-color: #ff6600b6;
+    margin-top: 4rem;;
+    background-color: #F1EBE5;
     padding: 1rem;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     box-shadow: 0 0 10px 2px ;
-    width: 50%;
+    width: 100%;
+}
+
+#modalForm{
+    color: black;
+    background-color: #F1EBE5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 0 10px 2px ;
+    width: 100%;
 }
 
 #formLogin{
-   
-    background-color: #ff6600b6;
+    background-color: #dbd8d6;
     padding: 1rem;
     border-radius: 0.5rem;
     display: flex;
@@ -56,7 +72,7 @@ body{
 
 #aLogIn{
     font-size: 10px;
-    color: #FFF;
+    color: #161515;
     text-align: center;
 }
 
@@ -64,11 +80,22 @@ body{
 #formTitle{
     width: 100%;
     padding: 0.5rem;
-    background-color: #ea784a;
+    background-color: #bdbbb9;
     border-radius: 10px;
     font-size: 1.2rem;
     font-weight: bold;
-    color:aliceblue;
+    color:black;
+    text-align: center;
+}
+
+#listTitle{
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #e5e3e3;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:black;
     text-align: center;
 }
 
@@ -79,13 +106,13 @@ body{
 }
 
 label{
-    color: #FFF;
+    color: #0f0f0f;
     padding: 0.4rem;
 }
 
 .formInputs{
 
-    background-color: #d65600d6 ;
+    background-color: #bdbbb9 ;
     outline: none;
     border: none;
     border-radius: 0.5rem;
@@ -119,8 +146,7 @@ label{
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: #A1E3F9 ;
-    color: rgba(5, 0, 0, 0.663);
-    
+    color: rgba(5, 0, 0, 0.663);  
 }
 
 select{
@@ -147,7 +173,7 @@ select{
 
 #form-btn{
     width: 100%;
-    background-color: #ed5a1b;
+    background-color: #aba9a7;
     color: black;
     border-radius: 0.5rem;
     padding: 1rem;
@@ -155,35 +181,33 @@ select{
 }
 
 #form-btn:hover{
- background-color: #f65916;
+ background-color: #a8a7a7;
 }
 
 #form-btn:disabled{
-    background-color: #bf4713;
+    background-color: #666564;
 opacity: 0.8;
 cursor: not-allowed;
 }
 
 #navbar{
-    position: 0;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-color: #ffa37f;
+    background-color: #5ea330;
     height: 4rem;
     z-index: 10;
     /* Esto es para superponerlo encima de todo, by default the document is set to z-index 0 */
 }
 
 #logoImg{
+    margin-top: 7.5rem;
     width: 35%;
-    height: 35%;
 }
 
 #logoImgNav{
-width: 5%;
+width: 6.5%;
 }
 
 #logo{
@@ -235,6 +259,11 @@ gap: 2rem;
     height: 11.5%;
     width: 5.5%;
     transition: all 0.1s ease-in;
+}
+
+.aRef{
+    text-decoration: underline;
+    color: rgba(21, 21, 208, 0.909);
 }
 
 .alinks:hover{
@@ -318,4 +347,417 @@ a{
 }
 
 
+/* MODAL STYLES */
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+/*Còdigos universales de la pàgina*/
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;;
+}
+/*Còdigo opcional - Fondo de la pàgina*/
+
+/*---*/
+body, .modal{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.modal{
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+	transition: all 500ms ease;
+	opacity: 0;
+	visibility: hidden;
+}
+#btn-modal:checked ~ .modal{
+	opacity: 1;
+	visibility: visible;
+} 
+.contenedor{
+	max-width: 100%;    
+    width: 80%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	
+	/* box-shadow: 1px 7px 25px rgba(0,0,0,0.6); */
+	transition: all 500ms ease;
+	position: relative;
+
+	 /* transform: translateY(-30%);
+}
+btn-modal:checked ~ .modal .contenedor{
+	transform: translateY(0%);  */
+} 
+.contenedor header{
+	padding: 10px;
+	background: #db8046;
+	color: #fff;
+}
+
+.hidden{
+    display: none;
+}
+
+#close{
+	position: absolute;
+    top: 9px;
+    right: 11px;
+	color: white;
+    background-color: red;
+    padding: 5px;
+    border-radius: 10px;;
+	font-size: 15px;
+	cursor: pointer;
+    
+}
+
+.open{
+	margin: 0 auto;
+    top: 12px;
+    right: 11px;
+	color: white;
+    background-color: red;
+    padding: 1rem;
+    border-radius: 10px;;
+	font-size: 15px;
+	cursor: pointer;
+    
+}
+
+.contenido{
+	width: 100%;
+    margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px; 
+}
+.contenido h3{
+	margin-bottom: 10px;
+}
+.contenido p{
+	margin-bottom: 7px;
+}
+#btn-modal{
+	display: none;
+}
+.lbl-modal{
+	background: #fff;
+	padding: 10px 15px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+@media only screen and (min-width:320px) and (max-width:768px){
+	.contenedor{
+		width: 95%;
+	}
+    #close{
+        top: 13px;
+        right: 12px;
+    }
+   
+}
+
+
+#fullContainer{
+    box-shadow: 0 0 10px 2px ;
+background-color: white;
+padding: 2rem;
+border-radius: 10px;
+
+}
+
+/* Modal Test */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 70%;
+  line-height: 1.4;
+  font-family: "Inter", sans-serif;
+  color: #6b7280;
+  font-weight: 400;
+
+  @media only screen and (min-width: 600px) {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    font-size: 100%;
+  }
+}
+
+
+
+.button {
+  appearance: none;
+  background: #16a34a;
+  border-radius: 0.25em;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  height: 3em;
+  line-height: 3em;
+  padding: 0 1em;
+
+  &:hover {
+    background-color: lighten(#16a34a, 2%);
+  }
+}
+
+
+
+.details-modal {
+  background: #ffffff;
+  border-radius: 0.5em;
+  box-shadow: 0 10px 20px rgba(black, 0.2);
+  left: 50%;
+  max-width: 90%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30em;
+  text-align: left;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+
+  
+
+  .details-modal-close {
+    align-items: center;
+    color: #111827;
+    display: flex;
+    height: 4.5em;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 4.5em;
+
+    svg {
+      display: block;
+    }
+  }
+
+
+
+  .details-modal-title {
+    color: #111827;
+    padding: 1.5em 2em;
+    pointer-events: all;
+    position: relative;
+    width: calc(100% - 4.5em);
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+
+
+  .details-modal-content {
+    border-top: 1px solid #e0e0e0;
+    padding: 2em;
+    pointer-events: all;
+    overflow: auto;
+  }
+}
+
+
+
+.details-modal-overlay {
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  background: rgba(#0f172a, 0.8);
+  position: fixed;
+  opacity: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+
+  details[open] & {
+    pointer-events: all;
+    opacity: 0.5;
+  }
+}
+
+
+
+details {
+  summary {
+    list-style: none;
+      
+    &:focus {
+      outline: none;
+    }
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+}
+
+
+
+code {
+  font-family: Monaco, monospace;
+  line-height: 100%;
+  background-color: #2d2d2c;
+  padding: 0.1em 0.4em;
+  letter-spacing: -0.05em;
+  word-break: normal;
+  border-radius: 7px;
+  color: white;
+  font-weight: normal;
+  font-size: 1.75rem;
+  position: relative;
+  top: -2px;
+}
+
+.modalContainer {
+  text-align: center;
+  max-width: 40em;
+
+  > h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: normal;
+    color: #111827;
+  }
+
+  > p {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  sup {
+    font-size: 1rem;
+    margin-left: 0.25em;
+    opacity: 0.5;
+    position: relative;
+  }
+}
+
+#topContainer{
+    margin-top: 2rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* SEARCHBAR */
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.wrap{
+    width: 60%;
+}
+
+.searchTerm {
+
+  width: 100%;
+  border: 3px solid #16a34a;
+  background-color: white;
+  border-right: none;
+  padding: 1.3rem;
+  font-size: 15px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: black;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+ padding: 1.3rem;
+  border: 1px solid #11853c;
+  background: #11853c;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+/* FILTER */
+
+/* Filter Dropdown Styles */
+.filter-container {
+  position: relative; /* Necesario para posicionar el menú dropdown */
+  display: inline-block;
+}
+
+.filter-dropdown {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  background-color: #f1ebe5;
+  min-width: 240px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 20; /* Asegura que esté por encima de otros elementos */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  right: 0; /* Alinea el menú a la derecha del botón */
+}
+
+.filter-dropdown.show {
+  display: flex; /* Clase para mostrar el menú */
+}
+
+.filter-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-option label {
+  font-size: 0.9rem;
+  color: #333;
+  padding: 0;
+}
+
+.filter-option input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 100%;
+}

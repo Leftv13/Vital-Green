@@ -45,8 +45,7 @@ if (!name || !email || !password || !phoneNumber){
             expiresIn: "20m"
         });
         
-       
-        const transporter = nodemailer.createTransport({
+           const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465,
             secure: true,
@@ -63,15 +62,10 @@ if (!name || !email || !password || !phoneNumber){
             html: `<a href="${PAGE_URL}/verify/${savedUser.id}/${token}">Verify Mail</a>`,
         });
 
-        
         return res.status(201).json({ message: "Usuario creado. Por favor verifica tu correo." });
 
-    } catch (error) {
-        
+    } catch (error) {      
         console.error('Error al registrar el usuario:', error);
-
-      
-
         return res.status(500).json({ message: 'Error interno del servidor al crear el usuario.', error: error.message });
     }
 });

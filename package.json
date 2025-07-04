@@ -32,7 +32,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.0",
     "morgan": "^1.10.0",
-    "nodemailer": "^7.0.3",
-    "tailwind": "^4.0.0"
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
   }
 }

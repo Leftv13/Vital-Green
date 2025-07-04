@@ -82,6 +82,11 @@ form.addEventListener("submit", async (event) => {
   } catch (error) {
     console.log(error);
     errorText.innerHTML = error.response.data.error;
+    setTimeout(() => {
+      errorText.innerHTML = "";
+    }, 5000);
+    emailInput.value = "";
+    passwordInput.value = "";
   }
 });
 
