@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/store.css">
+    <link rel="shortcut icon" href="/imgs/VITALGREEN-SINFONDO.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Shopping Cart</title>
     
 </head>
@@ -44,7 +46,15 @@
                         
                     </tbody>
                 </table>
+                <div id="btnCont">
+
+                <button id="buyTable">Comprar</button>
                 <button id="removeTable">Vaciar Carro</button>
+                <button id="closeTable">Cerrar Carro</button>
+
+                </div>
+
+               
               </section>
               <!--  Table : la tabla que se despliega
                     Thead: el titulo de la tabla
@@ -102,18 +112,7 @@
     <div id="prodContainer">
         <h3 id="prodTitle">Nuestros Mejores Productos</h3>
         <ul id="prodList">
-            <li class="prodItem">
-               <div class="prodImg">
-                <img src="https://imag.bonviveur.com/jugo-verde.jpg" alt="img1" class="pdImg">
-               </div>
-               <div class="prodInfo">
-                <p class="infoTitle">El Manzanero</p>
-                <p>Contiene: manzana, apio, espinaca, pina.</p>
-                <p>Cantidad: 5 paquetes de 120g c/u</p>
-                <p class="infoPrice">Precio: 10$</p>
-                <button class="prodBtn">AGREGAR AL CARRITO</button>
-               </div> 
-            </li>
+            
             <li class="prodItem">
                <div class="prodImg">
                 <img src="https://deliciaskitchen.b-cdn.net/wp-content/uploads/2021/03/jugo-de-pina-y-apio-casero.jpg" alt="img2" class="pdImg">
@@ -126,53 +125,7 @@
                 <button class="prodBtn">AGREGAR AL CARRITO</button>
                </div> 
             </li>
-            <li class="prodItem">
-               <div class="prodImg">
-                <img src="https://www.cronista.com/files/image/874/874267/6682e66cc3731.jpg" alt="img3" class="pdImg">
-               </div>
-               <div class="prodInfo">
-                <p class="infoTitle">Vital Verde</p>
-                <p>Contiene: Celery, Pepino, Limon, Kiwi.</p>
-                <p>Cantidad: 10 paquetes de 100g c/u</p>
-                <p class="infoPrice">Precio: 20$</p>
-                <button class="prodBtn">AGREGAR AL CARRITO</button>
-               </div> 
-            </li>
-            <li class="prodItem">
-               <div class="prodImg">
-                <img src="https://www.tododisca.com/wp-content/uploads/2023/11/jugos-verdes-contraindicaciones-1024x631.jpg" alt="img4" class="pdImg">
-               </div>
-               <div class="prodInfo">
-                <p class="infoTitle">Semana Verde</p>
-                <p>Contiene: Apio, Pepino, Espinaca, Celery.</p>
-                <p>Cantidad: 7 paquetes de 120g c/u</p>
-                <p class="infoPrice">Precio: 12$</p>
-                <button class="prodBtn">AGREGAR AL CARRITO</button>
-               </div> 
-            </li>
-            <li class="prodItem">
-                <div class="prodImg">
-                 <img src="https://recetas.atma.com.ar/uploads/recetas/imagen_327.jpg" alt="img5" class="pdImg">
-                </div>
-                <div class="prodInfo">
-                 <p class="infoTitle">Apio-Mango</p>
-                 <p>Contiene: Mango, Apio, Espinaca, Perejil.</p>
-                 <p>Cantidad: 5 paquetes de 120g c/u</p>
-                 <p class="infoPrice">Precio: 5$</p>
-                 <button class="prodBtn">AGREGAR AL CARRITO</button>
-                </div> 
-             </li><li class="prodItem">
-                <div class="prodImg">
-                 <img src="https://i.blogs.es/d74363/jugo-detox-jengibre-chia-receta-saludable/650_1200.jpg" alt="img6" class="pdImg">
-                </div>
-                <div class="prodInfo">
-                 <p class="infoTitle">Green Detox</p>
-                 <p>Contiene: Jengibre, Espinaca, Pepino, Celery.</p>
-                 <p>Cantidad: 5 paquetes de 120g c/u</p>
-                 <p class="infoPrice">Precio: 8$</p>
-                 <button class="prodBtn">AGREGAR AL CARRITO</button>
-                </div> 
-             </li>
+           
         </ul>
     </div>
   </section>

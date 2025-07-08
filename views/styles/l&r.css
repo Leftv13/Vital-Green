@@ -597,7 +597,7 @@ body {
 .details-modal-overlay {
   transition: opacity 0.2s ease-out;
   pointer-events: none;
-  background: rgba(#0f172a, 0.8);
+  background: rgba(#0f172a23, 0.8);
   position: fixed;
   opacity: 0;
   bottom: 0;

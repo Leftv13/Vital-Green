@@ -1,20 +1,57 @@
-// --- Selectores del DOM ---
+//const product =require("../models/product");
+
+//  Selectors 
 const productButtons = document.querySelectorAll('.prodBtn');
 const cartTableBody = document.querySelector('#tableBody');
 const emptyCartButton = document.querySelector('#removeTable');
 const cartCounter = document.querySelector('#cart-counter');
 const shopIcon = document.querySelector('#shopicon');
 const cartSection = document.querySelector('.cart');
+const prodList = document.querySelector('#prodList');
+const closeTable = document.querySelector('#closeTable');
+const buyTable = document.querySelector('#buyTable');
 
-// --- Estado de la aplicación ---
-let cart = [];
+(async () => {
+	try {
 
-// --- Funciones ---
+    //GET petition to display a card for every product in the db
+		const { data } = await axios.get('/api/products', {
+			withCredentials: true
+		});
+		
+		data.forEach(product => {
+			const listItem = document.createElement('li');
+		listItem.id = product._id;
+			listItem.classList.add('prodItem');
+			listItem.innerHTML = `
+	
+               <div class="prodImg">
+                <img src="${product.image_url}" alt="${product.name}" class="pdImg">
+               </div>
+               <div class="prodInfo">
+                <p class="infoTitle">${product.name}</p>
+                <p>Contiene: ${product.description}</p>
+                <p>Stock: ${product.stock}</p>
+                <p class="infoPrice">Precio: $${product.price.toFixed(2)}</p>
+                <button class="prodBtn">AGREGAR AL CARRITO</button>
+               </div> 
+          
+			`;
 
-/**
- * Actualiza el contador visual del carrito.
- * Lo muestra u oculta según si hay productos o no.
- */
+
+			prodList.append(listItem);
+		})
+	
+	} catch (error) {
+        console.log(error);
+	}
+})();
+
+
+
+let cart = []; 
+
+//Counter (topright icon)
 const updateCartCounter = () => {
     const totalItems = cart.length;
     cartCounter.textContent = totalItems;
@@ -26,14 +63,24 @@ const updateCartCounter = () => {
     }
 };
 
-/**
- * Renderiza los productos del carrito en la tabla.
- */
+//Local Storage Logic
+buyTable.addEventListener('click', () => {
+  if (cart.length === 0) {
+    alert('Tu carrito está vacío. Añade productos antes de comprar.');
+    return;
+  }
+  localStorage.setItem('shoppingCart', JSON.stringify(cart));
+  window.location.href = '/checkout';
+});
+
+updateCartCounter();
+
+
+// Renders the products ont the table.
 const renderCartItems = () => {
-  cartTableBody.innerHTML = ''; // Limpia la tabla antes de renderizar
+  cartTableBody.innerHTML = ''; //cleans the body before rendering
 
   cart.forEach(item => {
-    // Creamos la fila de la tabla con su contenido dinámicamente
     const cartRow = document.createElement('tr');
     cartRow.innerHTML = `
       <td><img src="${item.image}" alt="${item.name}" style="width: 100%; border-radius: 0.5rem;"></td>
@@ -50,65 +97,62 @@ const renderCartItems = () => {
     `;
     cartTableBody.appendChild(cartRow);
   });
-
-  // Llama a la actualización del contador cada vez que se renderiza el carrito
   updateCartCounter();
 };
 
-/**
- * Añade un producto al carrito.
- * @param {Event} e - El evento del click.
- */
+//Cart logic
 const addToCart = (e) => {
   const prodItem = e.target.closest('.prodItem');
   const name = prodItem.querySelector('.infoTitle').textContent;
-  const price = prodItem.querySelector('.infoPrice').textContent.replace('Precio: ', ''); // Limpiamos el texto
+  const price = prodItem.querySelector('.infoPrice').textContent;
   const image = prodItem.querySelector('.pdImg').src;
-  const id = name; // Usaremos el nombre como ID por ahora
+  const id = name; 
 
-  // Buscamos si el producto ya está en el carrito
   const existingItem = cart.find(item => item.id === id);
 
   if (existingItem) {
-    // Si ya existe, solo aumentamos la cantidad
     existingItem.quantity++;
+    existingItem.price++;
   } else {
-    // Si no existe, lo añadimos al carrito
     cart.push({ id, name, price, image, quantity: 1 });
   }
 
-  renderCartItems(); // Actualiza la vista del carrito
+  renderCartItems(); 
 };
 
-// --- Event Listeners ---
+//Event Listeners 
 
-// Añadir producto al hacer click en los botones
-productButtons.forEach(button => button.addEventListener('click', addToCart));
-
-// Eliminar un producto del carrito (usando delegación de eventos)
-cartTableBody.addEventListener('click', (e) => {
-  // Verificamos si el click fue en un botón de eliminar
-  if (e.target.classList.contains('delBtn')) {
-    const idToDelete = e.target.dataset.id;
-    // Filtramos el carrito para remover el item con ese ID
-    cart = cart.filter(item => item.id !== idToDelete);
-    renderCartItems(); // Volvemos a renderizar el carrito actualizado
+//Adding a product to the cart
+prodList.addEventListener('click', (e) => {
+  if (e.target.classList.contains('prodBtn')) {
+      addToCart(e);
   }
 });
 
-// Vaciar el carrito
-emptyCartButton.addEventListener('click', () => {
-    cart = []; // Resetea el array del carrito
-    renderCartItems(); // Actualiza la vista
+//Deleting a product form the cart
+cartTableBody.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delBtn')) {
+    const idToDelete = e.target.dataset.id;
+    cart = cart.filter(item => item.id !== idToDelete);
+    renderCartItems();
+  }
 });
 
-// Mostrar/ocultar el carrito
+// Empty the cart
+emptyCartButton.addEventListener('click', () => {
+    cart = []; //resets the array and then renders the cart again
+    renderCartItems(); 
+});
+
+// toggle functions to shor or hide the cart
 shopIcon.addEventListener('click', () => {
     cartSection.classList.toggle('showcart');
 });
 
-// --- Inicialización ---
-// Llama a la función una vez al cargar la página para establecer el estado inicial (0)
+ closeTable.addEventListener('click', () => {
+   cartSection.classList.toggle('showcart');
+ });
+
 updateCartCounter();
 
 //GOUP LOGIC
@@ -131,3 +175,5 @@ goUp.onclick = function ( ) {
         behavior: "smooth"
     })
 }
+
+

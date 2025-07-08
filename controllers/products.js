@@ -3,7 +3,7 @@
 const express = require('express');
 const Product = require('../models/product'); 
 const productRouter = express.Router(); 
-const { protect, authorizeAdmin } = require('../middleware/auth')
+const { protect } = require('../middleware/auth')
 
 
 //GET
@@ -34,7 +34,7 @@ productRouter.get('/:id', async (req, res) => {
 });
 
 //POST
-productRouter.post('/', protect, authorizeAdmin, async (req, res) => {
+productRouter.post('/', protect, async (req, res) => {
   const { name, price, image_url, description, stock} = req.body; 
 
   if (!name || !price || !image_url || !description || stock === undefined || stock === null){ 
@@ -62,7 +62,7 @@ productRouter.post('/', protect, authorizeAdmin, async (req, res) => {
 });
 
 // PUT Update a product by ID
-productRouter.put('/:id', protect, authorizeAdmin, async (req, res) => {
+productRouter.put('/:id', protect, async (req, res) => {
   const { name, price, image_url, description, stock } = req.body;
 
  
@@ -96,7 +96,7 @@ productRouter.put('/:id', protect, authorizeAdmin, async (req, res) => {
 
 
 //DELETE
-productRouter.delete('/:id', protect, authorizeAdmin, async (req, res) => {
+productRouter.delete('/:id', protect, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 

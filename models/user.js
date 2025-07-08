@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   registration_date: { type: Date, default: Date.now },
   last_login: Date,
-  role: { type: String, enum: ['client', 'admin'], default: 'admin' }
+  role: { type: String, enum: ['client', 'admin'], default: 'client' }
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -27,7 +27,7 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ffa37f;
+    background-color: #5ea330;
     height: 4rem;
     z-index: 10;
     /* Esto es para superponerlo encima de todo, by default the document is set to z-index 0 */
@@ -61,7 +61,7 @@ gap: 2rem;
 }
 
 #goUp{
-    background-color: #ea784a;
+    background-color: #569c28;
     height: 10%;
     width: 5%;
     position: 0;
@@ -77,7 +77,7 @@ gap: 2rem;
 }
 
 #goUp:hover{
-    background-color: #ea7648;
+    background-color: #4c8526;
     cursor: pointer;
     height: 11.5%;
     width: 5.5%;
@@ -109,7 +109,7 @@ color: #7f8285;
 }
 
 #shopicon:hover{
-    color: #ffa37f;
+    color: #27b059;
 }
 
 #navContent{
@@ -141,6 +141,7 @@ color: #7f8285;
 }
 
 .cart{
+    border-radius: 0px 0px 10px 10px;
     position: absolute;
     top: 4rem;
     width: 50%;
@@ -177,11 +178,18 @@ thead{
 
 }
 
+#btnCont{
+    justify-content: space-between;
+    align-items: end;
+}
+
 #removeTable{
+    width: 49%;
+   
 cursor: pointer;
 padding: 1rem;
 border-radius: 0.5rem;
-background-color: #ffa37f;
+background-color: #3f75d5;
 color: white;
 font-weight: 700;
 margin-top: 1rem;
@@ -189,11 +197,45 @@ transition: all 0.2s ease-in;
 
 }
 
+#closeTable{
+    width: 100%;
+
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #de2929;
+    color: white;
+    font-weight: 700;
+    margin-top: 1rem;
+    transition: all 0.2s ease-in;
+    
+    }
+
+    #buyTable{
+        width: 49%;
+        cursor: pointer;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: #3c9600;
+        color: white;
+        font-weight: 700;
+        margin-top: 1rem;
+        transition: all 0.2s ease-in;
+        
+        }
+
 
 #removeTable:hover{
-background-color: #e89777;
+background-color: #3364b8;
 }
 
+#closeTable:hover{
+background-color: #c02323;
+}
+
+#buyTable:hover{
+background-color: #338000;
+}
 .showcart{
     height: 25rem;
     padding: 1rem;
@@ -204,7 +246,7 @@ background-color: #e89777;
     width: 4rem;
     height: 3rem;
     padding: 0.5rem;
-    color: #ffa37f;
+    color: #27b059;
 }
 
 #hero{
@@ -264,7 +306,7 @@ input{
 #info
 { 
     padding: 1rem;
-    background-color: #df5620;
+    background-color: #5ea330;
    
 }
 
@@ -369,7 +411,7 @@ input{
 padding: 1rem;
 border-radius: 0.5rem;
 font-weight: 700;
-background-color: #e44f14;
+background-color: #67b434;
 color: white;
 cursor: pointer;
 transition: all 0.2s ease-in;
@@ -379,7 +421,7 @@ transition: all 0.2s ease-in;
 
 
 .prodBtn:hover{
-    background-color: #d64106;
+    background-color: #5a9d2d;
 }
 
 
@@ -532,7 +574,7 @@ transition: all 0.2s ease-in;
 padding: 1rem;
 border-radius: 0.5rem;
 font-weight: 700;
-background-color: #e44f14;
+background-color: #67b434;
 color: white;
 cursor: pointer;
 transition: all 0.2s ease-in;
@@ -552,7 +594,7 @@ transition: all 0.2s ease-in;
 
 
 .prodBtn:hover{
-    background-color: #d64106;
+    background-color: #5ca02f;
 }
 
 .pdImg{
@@ -630,7 +672,7 @@ transition: all 0.2s ease-in;
 padding: 1rem;
 border-radius: 0.5rem;
 font-weight: 700;
-background-color: #e44f14;
+background-color: #67b434;
 color: white;
 cursor: pointer;
 transition: all 0.2s ease-in;
@@ -638,7 +680,7 @@ transition: all 0.2s ease-in;
 
 
 .prodBtn:hover{
-    background-color: #d64106;
+    background-color: #599c2c;
 }
 #navtitle{
     display: none;
@@ -662,7 +704,7 @@ transition: all 0.2s ease-in;
     position: absolute;
     top: -5px; /* Ajusta para posicionarlo verticalmente */
     right: -8px; /* Ajusta para posicionarlo horizontalmente */
-    background-color: #e44f14; /* Un color que resalte */
+    background-color: #e43a14; /* Un color que resalte */
     color: white;
     border-radius: 50%; /* Para hacerlo un círculo */
     width: 1.5rem; /* Ancho fijo */

@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const loginRouter = require("./controllers/login");
 const usersRouters = require("./controllers/users.js"); 
-const { userExtractor } = require("./middleware/auth");
+const { protectAdminView, protect } = require("./middleware/auth");
 const productRouter = require("./controllers/products");
 //const logoutRouter = require("./controllers/logout");
 const { MONGO_URI } = require("./config");
@@ -42,13 +42,16 @@ app.use("/api/login", loginRouter);
 app.use("/api/products", productRouter);
 
 
+
+
 // Rutas FrontEnd
 app.use("/", express.static(path.join(__dirname, "views", "home")));
 app.use('/styles', express.static(path.join(__dirname, "views", "styles")));
 app.use('/verify/:id/:token', express.static(path.join(__dirname, "views", "verify")));
 app.use("/signup", express.static(path.join(__dirname, "views", "signup")));
 app.use("/login", express.static(path.join(__dirname, "views", "login")));
-app.use("/admin", express.static(path.join(__dirname, "views", "admin"))); 
+app.use("/checkout", protect, express.static(path.join(__dirname, "views", "checkout")));
+app.use("/admin", protectAdminView, express.static(path.join(__dirname, "views", "admin"))); 
 app.use("/store", express.static(path.join(__dirname, "views", "store"))); 
 app.use("/components", express.static(path.join(__dirname, "views", "components")));
 app.use("/images", express.static(path.join(__dirname, "imgs")));

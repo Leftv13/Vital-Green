@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/store.css">
-    
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/l&r.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+ <link rel="shortcut icon" href="/imgs/VITALGREEN-SINFONDO.png" type="image/x-icon">
+  <title>Iniciar Sesion</title>
 </head>
 <body>
-    
+
+
+
+    <nav id="navbar">
+        <div id="navContent">
+            <div id="navleft">
+              <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
+            <h1 id="navtitle">Vital Green </h1>
+            </div>    
+            <div id="navright">
+                <a href="/"><p class="alinks">About</p></a>
+                <a href="/store"><p class="alinks">Store</p></a>
+                <a href="/login"><p class="alinks">Log In</p></a>             
+            </div>
+        </div>
+    </nav>
+    <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
+
+
+
+<script src="./index.js"></script>
+
 </body>
 </html>
