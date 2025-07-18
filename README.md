@@ -93,6 +93,8 @@ Follow these steps to run the project in your local environment.
 
 The project is organized as follows to maintain a clear separation of concerns:
 
+ ```bash
+
 ├── controllers/ # Brain of the project, CRUD methods
 │   ├── login.js
 │   ├── logout.js
@@ -139,7 +141,7 @@ The project is organized as follows to maintain a clear separation of concerns:
 ├── README.md
 └── tailwind.config.js
 
-
+ ```
 ---
 
 ## 🤝 Contributing
