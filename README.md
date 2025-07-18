@@ -7,7 +7,7 @@ Welcome to Vital Green! This is the repository for a Full-Stack e-commerce proje
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 ### For Customers:
 -   **🏠 Attractive Homepage:** A showcase of the brand, featured products, and testimonials.
@@ -156,10 +156,11 @@ Contributions are welcome. If you wish to improve the project, please follow the
 ---
 
 ## 📄 License
+```
 
 MIT License
 
-Copyright (c) [2025] [Andres Abreu]
+Copyright (c) [2025] [Andres Abreu, Abigail Araujo]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -179,4 +180,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
+```
