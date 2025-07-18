@@ -1,5 +1,5 @@
 const PAGE_URL = process.env.NODE_ENV === 'production'
-    ? ''
+    ? 'https://vital-green.onrender.com'
     : process.env.LOCAL_URL;
 
 
