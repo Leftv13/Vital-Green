@@ -81,8 +81,8 @@ Follow these steps to run the project in your local environment.
 
 4.  **Run the server:**
     ```bash
-    npm run start //FOR DEVELOPMENT
-    npm run start //FOR PRODUCTION
+    npm run start #FOR DEVELOPMENT
+    npm run start #FOR PRODUCTION
     ```
 
 5.  **All set!** Open your browser and visit `http://localhost:3000`.
@@ -183,3 +183,4 @@ SOFTWARE.
 ```
 ---
 ## ☦ Author
+> [Andres Abreu] ([Leftv13](https://github.com/leftv13))
