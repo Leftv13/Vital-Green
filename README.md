@@ -160,7 +160,7 @@ Contributions are welcome. If you wish to improve the project, please follow the
 
 MIT License
 
-Copyright (c) [2025] [Andres Abreu, Abigail Araujo]
+Copyright (c) [2025] [Andres Abreu]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -181,3 +181,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ```
+---
+## ☦ Author
