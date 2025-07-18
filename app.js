@@ -8,12 +8,16 @@ const cookieParser = require('cookie-parser')
 const mongoose = require("mongoose");
 const path = require("path");
 const loginRouter = require("./controllers/login");
+const logoutRouter = require("./controllers/logout.js");
 const usersRouters = require("./controllers/users.js"); 
+const ordersRouter = require("./controllers/orders");
 const { protectAdminView, protect } = require("./middleware/auth");
 const productRouter = require("./controllers/products");
 //const logoutRouter = require("./controllers/logout");
 const { MONGO_URI } = require("./config");
 const {PAGE_URL} = require("./config");
+
+
 
 
 (async () => {
@@ -38,7 +42,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", usersRouters);
 app.use("/api/login", loginRouter); 
-//app.use("/api/logout", logoutRouter); (temporal)
+app.use("/api/orders", ordersRouter);
+app.use("/api/logout", logoutRouter); 
 app.use("/api/products", productRouter);
 
 
@@ -51,6 +56,7 @@ app.use('/verify/:id/:token', express.static(path.join(__dirname, "views", "veri
 app.use("/signup", express.static(path.join(__dirname, "views", "signup")));
 app.use("/login", express.static(path.join(__dirname, "views", "login")));
 app.use("/checkout", protect, express.static(path.join(__dirname, "views", "checkout")));
+app.use("/order", protect, express.static(path.join(__dirname, "views", "orders")));
 app.use("/admin", protectAdminView, express.static(path.join(__dirname, "views", "admin"))); 
 app.use("/store", express.static(path.join(__dirname, "views", "store"))); 
 app.use("/components", express.static(path.join(__dirname, "views", "components")));

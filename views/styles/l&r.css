@@ -201,6 +201,8 @@ cursor: not-allowed;
     /* Esto es para superponerlo encima de todo, by default the document is set to z-index 0 */
 }
 
+
+
 #logoImg{
     margin-top: 7.5rem;
     width: 35%;
@@ -267,9 +269,9 @@ gap: 2rem;
 }
 
 .alinks:hover{
-    font-size: 1.08rem;
+     /* font-size: 1.08rem; */
     transition: all 0.2s ease-in;
-    color: #e6dddd;
+    color: #e1dfdf;
 }
 
 a{
@@ -298,9 +300,9 @@ a{
 
 @media ( max-width: 700px ) {
 
-    #logoImg{
-      display: none;
-    }
+  #logoImg{
+   display: none;
+}
 
     #logoImgNav{
         width: 40%;
@@ -479,6 +481,24 @@ border-radius: 10px;
 
 }
 
+#footer{
+  display: flex;
+  justify-content: center;
+background-color: #424447;
+padding: 0.5rem;
+}
+
+#pFooter{
+font-size: 1.1rem;
+color: white;
+}
+
+#footerLink{
+  font-size: 1.1rem;
+  color: #0e6cf9;
+  list-style: none;
+}
+
 /* Modal Test */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
@@ -532,6 +552,9 @@ body {
 
 
 
+
+
+
 .details-modal {
   background: #ffffff;
   border-radius: 0.5em;
@@ -566,6 +589,13 @@ body {
       display: block;
     }
   }
+
+  #heroIcon{
+    width: 4rem;
+    height: 3rem;
+    padding: 0.5rem;
+    color: #ffffff;
+}
 
 
 
@@ -761,3 +791,96 @@ code {
   border-radius: 0.25rem;
   width: 100%;
 }
+
+/* HOME */
+#line{}
+
+#mainContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#topContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#midContainer{
+  #topContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+#bottomContainer{
+  #topContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+#mainTitle{
+  font-weight: 100 bold;
+  color: black;
+  font-size: 2rem;
+}
+
+#mainLogo{
+  width: 25%;
+  height: 25%;
+}
+
+#storeButton{ 
+    width: 100%;
+    background-color: #aba9a7;
+    color: black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+#about{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ gap: 1rem;
+}
+
+#bodyTitles{
+  font-weight: 100 bold;
+  color: black;
+  font-size: 0.8rem;
+}
+
+#desc{
+  font-weight: 100 bold;
+  color: black;
+  font-size: 0.5rem;
+}
+
+
+/* Order Styles */
+
+#order-list-section{
+
+  margin-top: 2rem;
+  box-shadow: 0 0 10px 2px ;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+
+
+
+
+

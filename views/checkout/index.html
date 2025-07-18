@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Checkout - Vital Green</title>
    
     <link rel="stylesheet" href="../styles/store.css">
+
+    
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+
+    <nav id="navbar">
+        <div id="navContent">
+            <div id="navleft">
+              <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
+            <h1 id="navtitle">Vital Green </h1>
+            </div>    
+            <div id="navright">
+                <a href="/store"><p class="alinks">Tienda</p></a>
+                <a href="/"><p class="alinks">Sobre Nosotros</p></a>
+                <a href="/login"><p class="alinks">Cerrar Sesion</p></a>             
+            </div>
+        </div>
+    </nav>
+    <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
 
 
     <style>
@@ -24,8 +46,12 @@
             <!-- Products go here -->
         </div>
         <h2 id="checkout-total" style="text-align: right; margin-top: 1rem;">Total: $0.00</h2>
-        <button style="width: 100%; padding: 1rem; background-color: #16a34a; color: white; border-radius: 0.5rem; font-weight: bold; margin-top: 1rem; cursor: pointer;">Finalizar Compra</button>
+        <button id="checkoutBtn" style="width: 100%; padding: 1rem; background-color: #16a34a; color: white; border-radius: 0.5rem; font-weight: bold; margin-top: 1rem; cursor: pointer;">Finalizar Compra</button>
+
+        
+        <a href="/store"><button style="width: 100%; padding: 1rem; background-color: #166fa3; color: white; border-radius: 0.5rem; font-weight: bold; margin-top: 1rem; cursor: pointer;"> Volver a la Tienda</button></a>
     </div>
-    <script src="./index.js"></script>
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="../components/notification.js"></script>
 </body>
 </html>

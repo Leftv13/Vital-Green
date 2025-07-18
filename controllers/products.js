@@ -85,6 +85,7 @@ productRouter.put('/:id', protect, async (req, res) => {
     product.image_url = image_url;
     product.description = description;
     product.stock = stock;
+   
 
     const updatedProduct = await product.save(); //saves the product
     return res.json({ message: 'Producto actualizado con exito!', product: updatedProduct });

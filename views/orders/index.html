@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/l&r.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<nav id="navbar">
+    <div id="navContent">
+        <div id="navleft">
+          <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
+          <h1 id="navtitle">Vital Green - Panel de Usuario</h1>
+        </div>
+
+        <div id="navright">
+          <a href="/store"><p class="alinks">Ver Tienda</p></a>
+          <a href=""><p  id="logout" class="alinks">Cerrar Sesión</p></a>
+        </div>
+    </div>
+</nav>
+
+<div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div style="background: white; width: 80%; max-width: 600px; margin: 20% auto; padding: 1rem; border-radius: 8px; position: relative;">
+      <button id="close-modal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+      <div id="modal-content">
+      
+      </div>
+    </div>
+  </div>
+
+<body>
+
+    <section id="order-list-section" style="margin-top: 2rem;">
+        <h2 id="listTitle" style="margin-bottom: 1rem;">Gestión de Órdenes</h2>
+        <hr style="margin: 1rem 0; border-color: #bdbbb9;">
+    
+        <div style="max-height: 50vh; overflow-y: auto; background-color: #fefefe; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px 2px;">
+            <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #bdbbb9;">
+                        <th style="padding: 0.75rem;">Orden #</th>
+                        <th style="padding: 0.75rem;">Cliente</th>
+                        <th style="padding: 0.75rem;">Fecha</th>                       
+                        <th style="padding: 0.75rem;">Total</th>
+                        <th style="padding: 0.75rem; text-align: center;">Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-container">
+    
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <!-- <section id="orders-section">
+        <h2>Mis Órdenes</h2>
+        <div id="orders-container"></div>
+      </section> -->
+
+<script src="./index.js"></script>
+</body>
+</html>

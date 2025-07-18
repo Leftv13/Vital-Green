@@ -117,7 +117,7 @@ phoneInput.addEventListener(`input`, e => {
                         phoneNumber: phoneInput.value 
                     }
 
-                    console.log(newUser);
+                    
             
                     const {data} = await axios.post(`${PAGE_URL}/api/users`, newUser);
                    

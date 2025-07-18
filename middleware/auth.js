@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user'); 
 
 
-// Middleware for preventing clients accessing the adming page
+// Middleware for preventing clients accessing the admin page
 const protectAdminView = async (req, res, next) => {
   try {
     const token = req.cookies?.accessToken;
@@ -16,7 +16,8 @@ const protectAdminView = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const user = await User.findById(decoded.id);
 
-    //If the user exists and its role is admin proceed to the admin page
+
+    //If the user exists and has the admin role proceed to the admin page
     if (user && user.role === 'admin') {
       return next();
     } else {
@@ -35,21 +36,23 @@ const protect = async (request, res, next) =>{
   try {
       const token = request.cookies?.accessToken;
 
-      if(!token){
-          return res.status(401).json({ message: 'No autorizado, no hay token' });
+      if(!token){  
+          confirm('No tienes acceso, por favor inicia sesión') 
+            res.redirect('/login');         
+           return;
       }
 
       const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       const user = await User.findById(decoded.id);
-      request.user = user;
-      
+      request.user = user;      
+      next();
+
   } catch (error) {
-      
-     return res.status(403).json({ message: 'No autorizado, error al verificar' });
 
-
+     res.redirect('/login'); 
+    res.status(403).json({ message: 'No autorizado, error al verificar' });  
+    return;    
   }    
-  next();
 };
 
 

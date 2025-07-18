@@ -11,44 +11,7 @@ const prodList = document.querySelector('#prodList');
 const closeTable = document.querySelector('#closeTable');
 const buyTable = document.querySelector('#buyTable');
 
-(async () => {
-	try {
-
-    //GET petition to display a card for every product in the db
-		const { data } = await axios.get('/api/products', {
-			withCredentials: true
-		});
-		
-		data.forEach(product => {
-			const listItem = document.createElement('li');
-		listItem.id = product._id;
-			listItem.classList.add('prodItem');
-			listItem.innerHTML = `
-	
-               <div class="prodImg">
-                <img src="${product.image_url}" alt="${product.name}" class="pdImg">
-               </div>
-               <div class="prodInfo">
-                <p class="infoTitle">${product.name}</p>
-                <p>Contiene: ${product.description}</p>
-                <p>Stock: ${product.stock}</p>
-                <p class="infoPrice">Precio: $${product.price.toFixed(2)}</p>
-                <button class="prodBtn">AGREGAR AL CARRITO</button>
-               </div> 
-          
-			`;
-
-
-			prodList.append(listItem);
-		})
-	
-	} catch (error) {
-        console.log(error);
-	}
-})();
-
-
-
+// Array to hold the cart items
 let cart = []; 
 
 //Counter (topright icon)
@@ -56,7 +19,7 @@ const updateCartCounter = () => {
     const totalItems = cart.length;
     cartCounter.textContent = totalItems;
 
-    if (totalItems === 0) {
+    if (totalItems == 0) {
         cartCounter.classList.add('hide-counter');
     } else {
         cartCounter.classList.remove('hide-counter');
@@ -80,16 +43,19 @@ updateCartCounter();
 const renderCartItems = () => {
   cartTableBody.innerHTML = ''; //cleans the body before rendering
 
+  
+
   cart.forEach(item => {
     const cartRow = document.createElement('tr');
+    const rowTotal = item.price * item.quantity;
     cartRow.innerHTML = `
       <td><img src="${item.image}" alt="${item.name}" style="width: 100%; border-radius: 0.5rem;"></td>
       <td>${item.name}</td>
-      <td>${item.price}</td>
+      <td>$${rowTotal.toFixed(2)}</td>
       <td>${item.quantity}</td>
       <td>
         <button class="delBtn" data-id="${item.id}">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 15px; height: 25px; pointer-events: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style=" pointer-events: none; color: white; align-self: center;">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -98,23 +64,27 @@ const renderCartItems = () => {
     cartTableBody.appendChild(cartRow);
   });
   updateCartCounter();
-};
+}; 
 
 //Cart logic
 const addToCart = (e) => {
   const prodItem = e.target.closest('.prodItem');
+  const quantityInput = prodItem.querySelector('.quantityInput').value;
+  const _id = prodItem.id; 
   const name = prodItem.querySelector('.infoTitle').textContent;
-  const price = prodItem.querySelector('.infoPrice').textContent;
+  const priceText = prodItem.querySelector('.infoPrice').textContent;
   const image = prodItem.querySelector('.pdImg').src;
-  const id = name; 
-
-  const existingItem = cart.find(item => item.id === id);
+  const priceNumber = parseFloat(priceText.replace('Precio: $', ''));
+  const existingItem = cart.find(item => item._id === _id);
+  let quantity = parseInt(quantityInput);
+  if(isNaN(quantity) || quantity < 1){
+  quantity = 1;
+  }
 
   if (existingItem) {
-    existingItem.quantity++;
-    existingItem.price++;
+    existingItem.quantity += quantity;;
   } else {
-    cart.push({ id, name, price, image, quantity: 1 });
+    cart.push({ _id, name, price: priceNumber , image, quantity });
   }
 
   renderCartItems(); 
@@ -144,7 +114,7 @@ emptyCartButton.addEventListener('click', () => {
     renderCartItems(); 
 });
 
-// toggle functions to shor or hide the cart
+// toggle functions to show or hide the cart
 shopIcon.addEventListener('click', () => {
     cartSection.classList.toggle('showcart');
 });
@@ -176,4 +146,83 @@ goUp.onclick = function ( ) {
     })
 }
 
+//SEARCH LOGIC
 
+// Selectors
+const searchTermInput = document.getElementById('searchTermInput');
+const searchButton = document.getElementById('searchButton');
+
+
+//Ts will hold all the products
+let allProducts = []; 
+
+// Function to display products in the table 
+function displayProducts(allProducts) {
+  prodList.innerHTML = ''; // Clear current table content
+
+  allProducts.forEach(product => {
+    const listItem = document.createElement('li');
+  listItem.id = product._id;
+    listItem.classList.add('prodItem');
+    listItem.innerHTML = `
+
+             <div class="prodImg">
+              <img src="${product.image_url}" alt="${product.name}" class="pdImg">
+             </div>
+             <div class="prodInfo">
+              <p class="infoTitle">${product.name}</p>
+              <p>Contiene: ${product.description}</p>
+              <p>Existencias: ${product.stock}</p>
+              <p class="infoPrice">Precio: $${product.price.toFixed(2)}</p>
+              <input type="number" class="quantityInput" value="1" min="1">
+              <button class="prodBtn">AGREGAR AL CARRITO</button>
+             </div> 
+        
+    `;
+      prodList.appendChild(listItem);
+  });
+
+
+}
+
+//Get petition
+async function fetchProducts() {
+    try {
+        const response = await axios.get('/api/products'); 
+        allProducts = response.data; 
+        displayProducts(allProducts); 
+    } catch (error) {
+       console.log(error);
+
+       
+    }
+}
+
+// Call fetchProducts when the page loads
+document.addEventListener('DOMContentLoaded', fetchProducts);
+
+
+
+
+// Function to filter products 
+function filterProducts() {
+    const searchTerm = searchTermInput.value.toLowerCase().trim(); // trim rmvs spaces
+
+    if (searchTerm === '') {
+        displayProducts(allProducts); // If search bar is empty, display all products
+        return;
+    }
+
+    // Filter products based on the search bar content, it can be by either description or name
+    const filtered = allProducts.filter(product =>
+        product.name.toLowerCase().includes(searchTerm) || 
+        product.description.toLowerCase().includes(searchTerm) 
+    );
+
+    displayProducts(filtered); // Display the products with the argument of the search bar
+}
+
+// Event Listener for inputs
+
+// Listen for input changes, everytime the user types the products will load again
+searchTermInput.addEventListener('input', filterProducts);

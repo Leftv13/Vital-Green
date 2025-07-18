@@ -1,39 +1,127 @@
-document.addEventListener('DOMContentLoaded', () => {
+    import { createNotification } from "../components/notification.js";
+    document.addEventListener('DOMContentLoaded', () => {
+    const checkoutBtn = document.getElementById('checkoutBtn');
     const itemsContainer = document.getElementById('checkout-items-container');
     const totalElement = document.getElementById('checkout-total');
+    
+    
+        // --- Pdf stuff ---
+    const generateInvoicePDF = (cart, total) => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.addImage('/images/VITALGREEN-SINFONDO.png', 'PNG', 15, 10, 30, 30);
+        doc.setFontSize(22);
+        doc.text('Recibo de Compra - Vital Green', 55, 25);
+        doc.setFontSize(12);
+        doc.text(`Fecha: ${new Date().toLocaleDateString('es-ES')}`, 15, 45);
+
+        // Crear la tabla con los productos
+        const tableColumn = ["Producto", "Cantidad", "Precio Unitario", "Subtotal"];
+        const tableRows = [];
+
+        cart.forEach(item => {
+            const subtotal = item.price * item.quantity;
+            const itemData = [
+                item.name,
+                item.quantity,
+                `$${item.price.toFixed(2)}`,
+                `$${subtotal.toFixed(2)}`
+            ];
+            tableRows.push(itemData);
+        });
+
+        doc.autoTable({
+            head: [tableColumn],
+            body: tableRows,
+            startY: 55, 
+        });
+
+        // Añadir el total al final
+        const finalY = doc.lastAutoTable.finalY; // Obtiene la posición final de la tabla
+        doc.setFontSize(14);
+        doc.text(`Total de la Compra: $${total.toFixed(2)}`, 14, finalY + 15);
+
+        // Guardar el PDF
+        doc.save('recibo-vital-green.pdf');
+    };
+
+ 
 
     // Gets the saved products from the localstorage
     const cartString = localStorage.getItem('shoppingCart');
+    
 
     // If theres no products then display this
     if (!cartString) {
-        itemsContainer.innerHTML = '<p>No hay productos en tu carrito.</p>';
-        return;
+        itemsContainer.innerHTML = '<p>Tu orden esta en proceso. Pronto te llamaremos para concretar el envio..</p>';
+        totalElement.textContent = 'Total: $0.00';
+        checkoutBtn.disabled = true;
+        checkoutBtn.style.backgroundColor = '#9ca3af';
+       
+    }else {
+        // Convert the string batck to an object
+        const cart = JSON.parse(cartString);
+
+        let total = 0;
+
+        // For each product found in the local storage creates a div inside of the parent elemnt
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            const rowTotal = item.price * item.quantity;
+            itemElement.classList.add('checkout-item');
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div>
+                    <h4>${item.name}</h4>
+                    <p>Cantidad: ${item.quantity}</p>
+                </div>
+            <p style="margin-left: auto; font-weight: bold;">$${rowTotal.toFixed(2)}</p>
+            `;
+            itemsContainer.appendChild(itemElement);
+
+            // total price logic
+            total += rowTotal; //total = total + (item.price * item.quantity);
+        });
+
+        totalElement.textContent = `Total: $${total.toFixed(2)}`;
+
+        checkoutBtn.addEventListener('click', async () => {
+            if (!confirm('¿Estás seguro de que quieres finalizar tu compra?')) return;
+        
+            
+
+
+            try {
+                // El backend espera el carrito completo y el total.
+                // Ya los tienes en las variables 'cart' y 'total'.
+                const { data } = await axios.post('/api/orders', 
+                    {
+                       
+                        cart: cart,
+                        total: total, 
+                      
+                    },
+                    { withCredentials: true }
+                );
+    
+                createNotification(false, data.message);
+
+              
+                // GenPDF y limpieza del localStorage solo si la orden se creó con éxito.
+                generateInvoicePDF(cart, total);
+                localStorage.removeItem('shoppingCart');
+                
+                setTimeout(() => location.reload(), 3000);
+
+            } catch (error) {
+               
+                const errorMessage = error.response?.data?.message || 'Error al crear la orden. Intenta de nuevo.';
+                createNotification(true, errorMessage);
+            }
+
+
+           
+        });
     }
-
-    // Convert the string batck to an object
-    const cart = JSON.parse(cartString);
-
-    let total = 0;
-
-    // For each product found in the local storage creates a div
-    cart.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('checkout-item');
-        itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div>
-                <h4>${item.name}</h4>
-                <p>Cantidad: ${item.quantity}</p>
-            </div>
-            <p style="margin-left: auto; font-weight: bold;">${item.price}</p>
-        `;
-        itemsContainer.appendChild(itemElement);
-
-        // total price logics
-        const priceNumber = parseFloat(item.price.replace('Precio: $', ''));
-        total += priceNumber * item.quantity;
-    });
-
-    totalElement.textContent = `Total: $${total.toFixed(2)}`;
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador</title>
+    <title>Admin</title>
     <!-- Reutilizando los estilos existentes para consistencia visual -->
     <link rel="stylesheet" href="../styles/l&r.css">
     <link rel="shortcut icon" href="/imgs/VITALGREEN-SINFONDO.png" type="image/x-icon">
@@ -11,11 +11,20 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
+<div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000;">
+  <div style="background: white; width: 80%; max-width: 600px; margin: 20% auto; padding: 1rem; border-radius: 8px; position: relative;">
+    <button id="close-modal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+    <div id="modal-content">
+    
+    </div>
+  </div>
+</div>
 <body>
     <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
 
 
-    <!-- Navbar consistente con el resto del sitio -->
+    
     <nav id="navbar">
         <div id="navContent">
             <div id="navleft">
@@ -24,9 +33,8 @@
             </div>
     
             <div id="navright">
-              <a href="../store/index.html"><p class="alinks">Ver Tienda</p></a>
-              <!-- Podrías agregar un botón de "Cerrar Sesión" aquí -->
-              <a href="#"><p class="alinks">Cerrar Sesión</p></a>
+              <a href="/store"><p class="alinks">Ver Tienda</p></a>
+              <a><p class="alinks" id="logout">Cerrar Sesión</p></a>
             </div>
         </div>
     </nav>
@@ -36,148 +44,184 @@
   
          
 
-       <div id="fullContainer" style="margin-top: 4rem; height: 90%; " >
-
-        <h2 id="listTitle" style="margin-bottom: 1rem;">Productos Existentes</h2>
+<div id="doubleContainer">
 
 
-                <div id="topContainer">
+  <div id="fullContainer" style="margin-top: 55%; height: 90%; " >
 
-                    <div class="wrap">
-                        <div class="search">
-                           <input type="search" class="searchTerm" id="searchTermInput" placeholder="Buscar producto">
-                           <button type="submit" class="searchButton" id="searchButton">
-                             <i class="fa fa-search"></i>
-                          </button>
-                        </div>
-                     </div>
+    <h2 id="listTitle" style="margin-bottom: 1rem;">Productos Existentes</h2>
 
-                      <div class="filter-container">
-                        <button id="filter-btn" class="button">Filtrar</button>
-                        <div id="filter-menu" class="filter-dropdown">
-                            <div class="filter-option">
-                                <label for="min-price">Precio Mínimo:</label>
-                                <input type="number" id="min-price" class="formInputs" placeholder="0" min="0">
-                            </div>
-                            <div class="filter-option">
-                                <label for="max-price">Precio Máximo:</label>
-                                <input type="number" id="max-price" class="formInputs" placeholder="100" min="0">
-                            </div>
-                            <div class="filter-option">
-                                <label for="min-stock">Stock Mínimo:</label>
-                                <input type="number" id="min-stock" class="formInputs" placeholder="0" min="0">
-                            </div>
-                            <div class="filter-option">
-                                <label for="max-stock">Stock Máximo:</label>
-                                <input type="number" id="max-stock" class="formInputs" placeholder="1000" min="0">
-                            </div>
-                            <button id="apply-filters-btn" class="button" style="margin-top: 0.5rem; background-color: #007bff;">Aplicar Filtros</button>
-                        </div>
+
+            <div id="topContainer" style="flex-direction: row;">
+
+                <div class="wrap">
+                    <div class="search">
+                       <input type="search" class="searchTerm" id="searchTermInput" placeholder="Buscar producto">
+                       <button type="submit" class="searchButton" id="searchButton">
+                        <svg id="heroIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+                        </svg>
+                         <i class="fa fa-search"></i>
+                      </button>
                     </div>
+                 </div>
 
-
-
-
-        <div class="modalContainer">
-        
-            <details>
-              <summary>
-                <div class="button">
-                  Nuevo Producto
-                </div>
-                <div class="details-modal-overlay"></div>
-              </summary>
-              <div class="details-modal">
-                <div class="details-modal-close" style="margin-top: 2rem;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" style="cursor: pointer;">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
-                  </svg>
-                </div>
-                <div class="details-modal-title" style="margin-top: 2rem;">
-                  <h1>Añade Un producto</h1>
-                </div>
-                <div class="details-modal-content">
-                  <section id="product-form-section">
-                      
-                      <form id="modalForm">
-                        <input type="hidden" id="product-id">
-          
-                          <div id="formdiv">
-                              <label for="product-name">Nombre del Producto</label>
-                              <input type="text" id="product-name" class="formInputs" placeholder="Ej: Jugo Vital Verde" required>
-                          </div>
-          
-                          <div id="formdiv">
-                              <label for="product-description">Descripción</label>
-                              <textarea id="product-description" class="formInputs" placeholder="Contiene: apio, espinaca..." rows="3" required></textarea>
-                          </div>
-          
-                          <div id="formdiv">
-                              <label for="product-price">Precio ($)</label>
-                              <input type="number" id="product-price" class="formInputs" placeholder="Ej: 10.99" step="0.01" min="0" required>
-                          </div>
-
-                          <div id="formdiv">
-                            <label for="product-price">Stock</label>
-                            <input type="number" id="product-stock" class="formInputs" placeholder="Ej: 22" step="1" min="0" required>
+                  <!-- <div class="filter-container">
+                    <button id="filter-btn" class="button">Filtrar</button>
+                    <div id="filter-menu" class="filter-dropdown">
+                        <div class="filter-option">
+                            <label for="min-price">Precio Mínimo:</label>
+                            <input type="number" id="min-price" class="formInputs" placeholder="0" min="0">
                         </div>
-                          
-                          <div id="formdiv">
-                              <label for="product-image">URL de la Imagen</label>
-                              <input type="url" id="product-image" class="formInputs" placeholder="https://ejemplo.com/imagen.jpg" required>
-                          </div>
-          
-                          <div class="btn-container" style="display: flex; justify-content: center;">
-                              <button type="submit" id="form-btn" style="background-color: #72C23B; color: white;">Guardar Producto</button>
-                          </div>
-                      </form>
-                  </section>
-                </div>
-              </div>
-            </details>
-          </div>
-  
+                        <div class="filter-option">
+                            <label for="max-price">Precio Máximo:</label>
+                            <input type="number" id="max-price" class="formInputs" placeholder="100" min="0">
+                        </div>
+                        <div class="filter-option">
+                            <label for="min-stock">Stock Mínimo:</label>
+                            <input type="number" id="min-stock" class="formInputs" placeholder="0" min="0">
+                        </div>
+                        <div class="filter-option">
+                            <label for="max-stock">Stock Máximo:</label>
+                            <input type="number" id="max-stock" class="formInputs" placeholder="1000" min="0">
+                        </div>
+                        <button id="apply-filters-btn" class="button" style="margin-top: 0.5rem; background-color: #007bff;">Aplicar Filtros</button>
+                    </div>
+                </div> -->
 
-                </div>
-        
+
+
+
+    <div class="modalContainer">
+    
+        <details>
+          <summary>
+            <div class="button">
+              Nuevo Producto
+            </div>
+            <div class="details-modal-overlay"></div>
+          </summary>
+          <div class="details-modal">
+            <div class="details-modal-close" style="margin-top: 2rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" style="cursor: pointer;">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
+              </svg>
+            </div>
+            <div class="details-modal-title" style="margin-top: 2rem;">
+              <h1>Añade Un producto</h1>
+            </div>
+            <div class="details-modal-content">
+              <section id="product-form-section">
+                  
+                  <form id="modalForm">
+                    <input type="hidden" id="product-id">
+      
+                      <div id="formdiv">
+                          <label for="product-name">Nombre del Producto</label>
+                          <input type="text" id="product-name" class="formInputs" placeholder="Ej: Jugo Vital Verde" required>
+                      </div>
+      
+                      <div id="formdiv">
+                          <label for="product-description">Descripción</label>
+                          <textarea id="product-description" class="formInputs" placeholder="Contiene: apio, espinaca..." rows="3" required></textarea>
+                      </div>
+      
+                      <div id="formdiv">
+                          <label for="product-price">Precio ($)</label>
+                          <input type="number" id="product-price" class="formInputs" placeholder="Ej: 10.99" step="0.01" min="0" required>
+                      </div>
+
+                      <div id="formdiv">
+                        <label for="product-price">Stock</label>
+                        <input type="number" id="product-stock" class="formInputs" placeholder="Ej: 22" step="1" min="0" required>
+                    </div>
+                      
+                      <div id="formdiv">
+                          <label for="product-image">URL de la Imagen</label>
+                          <input type="url" id="product-image" class="formInputs" placeholder="https://ejemplo.com/imagen.jpg" required>
+                      </div>
+      
+                      <div class="btn-container" style="display: flex; justify-content: center;">
+                          <button type="submit" id="form-btn" style="background-color: #72C23B; color: white;">Guardar Producto</button>
+                      </div>
+                  </form>
+              </section>
+            </div>
+          </div>
+        </details>
+      </div>
+
+
+            </div>
+    
+
+
+
+    <hr style="margin: 1rem 0; border-color: #bdbbb9;">
+
+
+    <section id="product-list-section">
+       
+        <div style="max-height: 50vh; overflow-y: auto; background-color: #fefefe; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px 2px;"> 
+            <table style=" text-align: left; border-collapse: collapse;">
+                <thead>
+                <thead>
+                    <tr style="border-bottom: 2px solid #bdbbb9;">
+                        <th style="padding: 0.75rem;">Nombre</th>
+                        <th style="padding: 0.75rem;">Descripcion</th>
+                        <th style="padding: 0.75rem;">Precio</th>
+                        <th style="padding: 0.75rem;">Stock</th>
+                        <th style="padding: 0.75rem;">Ult. Modificacion</th>
+                        <th style="padding: 0.75rem; text-align: center;">Acciones</th>
+                        
+
+                    </tr>
+                </thead>
+                <!-- products display here -->
+                <tbody id="product-list-body">
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
 
    
+  
+</main>
 
-        <hr style="margin: 1rem 0; border-color: #bdbbb9;">
+</div>
 
-        <!-- Sección para Listar Productos Existentes -->
-        <section id="product-list-section">
-           
-            <div style="max-height: 50vh; overflow-y: auto; background-color: #fefefe; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px 2px;"> 
-                <table style=" text-align: left; border-collapse: collapse;">
-                    <thead>
-                    <thead>
-                        <tr style="border-bottom: 2px solid #bdbbb9;">
-                            <th style="padding: 0.75rem;">Nombre</th>
-                            <th style="padding: 0.75rem;">Descripcion</th>
-                            <th style="padding: 0.75rem;">Precio</th>
-                            <th style="padding: 0.75rem;">Stock</th>
-                            <th style="padding: 0.75rem;">Ult. Modificacion</th>
-                            <th style="padding: 0.75rem; text-align: center;">Acciones</th>
-                            
 
-                        </tr>
-                    </thead>
-                    <!-- products display here -->
-                    <tbody id="product-list-body">
-                        
-                    </tbody>
-                </table>
-            </div>
-        </section>
 
-       </div>
-    </main>
+<section id="order-list-section" style="margin-top: 2rem;">
+    <h2 id="listTitle" style="margin-bottom: 1rem;">Gestión de Órdenes</h2>
+    <hr style="margin: 1rem 0; border-color: #bdbbb9;">
 
+    <div style="max-height: 50vh; overflow-y: auto; background-color: #fefefe; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px 2px;">
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 2px solid #bdbbb9;">
+                    <th style="padding: 0.75rem;">Orden #</th>
+                    <th style="padding: 0.75rem;">Cliente</th>
+                    <th style="padding: 0.75rem;">Fecha</th>
+                    <th style="padding: 0.75rem;">Total</th>
+                    <th style="padding: 0.75rem; text-align: center;">Estado</th>
+                </tr>
+            </thead>
+            <tbody id="order-list-body">
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</div> 
     
     <script type="module" src="./index.js"></script>
     <script type="module" src="../components/notification.js"></script>
 
-
+    
 </body>
+
 </html>

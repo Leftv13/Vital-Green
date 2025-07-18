@@ -56,14 +56,21 @@ gap: 2rem;
 }
 
 .alinks{
+
     color: white;
     text-decoration: none;
+}
+
+.alinks:hover{
+    /* background-color: #528e2a ; */
+    /* font-size: 1.08rem; */
+    transition: all 0.2s ease-in;
+    color: #ababab;
 }
 
 #goUp{
     background-color: #569c28;
     height: 10%;
-    width: 5%;
     position: 0;
     position: fixed; 
     right:0;
@@ -80,15 +87,10 @@ gap: 2rem;
     background-color: #4c8526;
     cursor: pointer;
     height: 11.5%;
-    width: 5.5%;
     transition: all 0.1s ease-in;
 }
 
-.alinks:hover{
-    font-size: 1.08rem;
-    transition: all 0.2s ease-in;
-    color: #e6dddd;
-}
+
 
 a{
     text-decoration: none;
@@ -251,8 +253,8 @@ background-color: #338000;
 
 #hero{
     
-    height:  calc(50vh - 4rem);
-    /* Aqui le estoy diciendo que ocupe el 100% de la pantalla menos los 4rem de la navbar */
+    height:  calc(55vh);
+    /* Aqui le estoy diciendo que ocupe el 55% de la pantalla menos los 4rem de la navbar (ya no) */
     background-image: url("https://www.evolutionreal.mx/cdn/shop/articles/blog_EVO_imag.001_cc68a657-2dd7-40b5-a8dc-bbba4be0bc8f.jpg?v=1672789107");
     background-position: center;
     background-size: cover;
@@ -280,6 +282,7 @@ background-color: #338000;
     text-align: center;
 }
 
+
 #heroInput{
     display: flex;
     flex-direction: row;
@@ -287,11 +290,47 @@ background-color: #338000;
     background-color: rgb(235, 231, 231);
     padding: 0.5rem;
     border-radius: 0.5rem;
-    
+    width: 66%;
+}
+
+.quantityInput{
+box-shadow: inset 0 0 10px #5d615f;
+ align-self: center;
+ width: 100%;
+ margin: 10px;
+padding: 0.5rem;
+border-radius: 0.5rem;
+font-size: 20px;
+background-color: #bac6be;
+}
+
+#footer{
+    display: flex;
+    justify-content: center;
+background-color: #424447;
+padding: 0.5rem;
+}
+
+#pFooter{
+font-size: 1.1rem;
+color: white;
+}
+
+#footerLink{
+    font-size: 1.1rem;
+    color: #367ee9;
+    list-style: none;
+}
+
+#storeh3{
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 input{
-    width: 80%;
+    color: black;
+    width: 90%;
     background-color: transparent;
     outline: none;
     font-size: 0.8rem;
@@ -313,6 +352,16 @@ input{
 #tbimg{
     width: 25%;
     height: 100%;
+}
+
+#heroContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoImg{
+    width: 25%;
 }
 
 #infoContainer{
@@ -719,6 +768,13 @@ transition: all 0.2s ease-in;
 .hide-counter {
     display: none; /* Clase para ocultar el contador */
 }
+
+
+#logoImgNav{
+    width: 6.5%;
+    }
+    
+
 
 
     
