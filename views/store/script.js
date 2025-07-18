@@ -1,5 +1,3 @@
-//const product =require("../models/product");
-
 //  Selectors 
 const productButtons = document.querySelectorAll('.prodBtn');
 const cartTableBody = document.querySelector('#tableBody');
@@ -11,7 +9,7 @@ const prodList = document.querySelector('#prodList');
 const closeTable = document.querySelector('#closeTable');
 const buyTable = document.querySelector('#buyTable');
 
-// Array to hold the cart items
+// Empty array to hold the cart items
 let cart = []; 
 
 //Counter (topright icon)
@@ -38,12 +36,9 @@ buyTable.addEventListener('click', () => {
 
 updateCartCounter();
 
-
-// Renders the products ont the table.
+// Renders the products on the table.
 const renderCartItems = () => {
   cartTableBody.innerHTML = ''; //cleans the body before rendering
-
-  
 
   cart.forEach(item => {
     const cartRow = document.createElement('tr');
@@ -78,28 +73,25 @@ const addToCart = (e) => {
   const existingItem = cart.find(item => item._id === _id);
   let quantity = parseInt(quantityInput);
   if(isNaN(quantity) || quantity < 1){
-  quantity = 1;
+    quantity = 1;
   }
 
   if (existingItem) {
-    existingItem.quantity += quantity;;
+    existingItem.quantity += quantity;
   } else {
-    cart.push({ _id, name, price: priceNumber , image, quantity });
+    cart.push({ _id, name, price: priceNumber, image, quantity });
   }
 
   renderCartItems(); 
 };
 
 //Event Listeners 
-
-//Adding a product to the cart
 prodList.addEventListener('click', (e) => {
   if (e.target.classList.contains('prodBtn')) {
       addToCart(e);
   }
 });
 
-//Deleting a product form the cart
 cartTableBody.addEventListener('click', (e) => {
   if (e.target.classList.contains('delBtn')) {
     const idToDelete = e.target.dataset.id;
@@ -108,64 +100,56 @@ cartTableBody.addEventListener('click', (e) => {
   }
 });
 
-// Empty the cart
 emptyCartButton.addEventListener('click', () => {
-    cart = []; //resets the array and then renders the cart again
+    cart = [];
     renderCartItems(); 
 });
 
-// toggle functions to show or hide the cart
 shopIcon.addEventListener('click', () => {
     cartSection.classList.toggle('showcart');
 });
 
- closeTable.addEventListener('click', () => {
+closeTable.addEventListener('click', () => {
    cartSection.classList.toggle('showcart');
- });
+});
 
 updateCartCounter();
 
-//GOUP LOGIC
+//GO UP LOGIC
+const goUp = document.querySelector('#goUp');
 
-const goUp = document.querySelector(`#goUp`);
-
-goUp.style.display = `none`;
-window.addEventListener(`scroll`, () =>{
-    if(this.scrollY > 500){
-        goUp.style.display = `block`
-    }else{
-        goUp.style.display = `none`;
+goUp.style.display = 'none';
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+        goUp.style.display = 'block';
+    } else {
+        goUp.style.display = 'none';
     }
+});
 
-})
-
-goUp.onclick = function ( ) {
+// Smooth scroll to top
+goUp.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
-    })
-}
+    });
+});
 
 //SEARCH LOGIC
-
-// Selectors
 const searchTermInput = document.getElementById('searchTermInput');
 const searchButton = document.getElementById('searchButton');
 
-
-//Ts will hold all the products
 let allProducts = []; 
 
-// Function to display products in the table 
-function displayProducts(allProducts) {
-  prodList.innerHTML = ''; // Clear current table content
+// Function to display products in the product list
+const displayProducts = (productsToDisplay) => {
+  prodList.innerHTML = '';
 
-  allProducts.forEach(product => {
+  productsToDisplay.forEach(product => {
     const listItem = document.createElement('li');
-  listItem.id = product._id;
+    listItem.id = product._id;
     listItem.classList.add('prodItem');
     listItem.innerHTML = `
-
              <div class="prodImg">
               <img src="${product.image_url}" alt="${product.name}" class="pdImg">
              </div>
@@ -177,52 +161,38 @@ function displayProducts(allProducts) {
               <input type="number" class="quantityInput" value="1" min="1">
               <button class="prodBtn">AGREGAR AL CARRITO</button>
              </div> 
-        
     `;
-      prodList.appendChild(listItem);
+    prodList.appendChild(listItem);
   });
+};
 
-
-}
-
-//Get petition
-async function fetchProducts() {
+// Fetch products from the server
+const fetchProducts = async () => {
     try {
         const response = await axios.get('/api/products'); 
         allProducts = response.data; 
         displayProducts(allProducts); 
     } catch (error) {
        console.log(error);
-
-       
     }
-}
+};
 
-// Call fetchProducts when the page loads
-document.addEventListener('DOMContentLoaded', fetchProducts);
-
-
-
-
-// Function to filter products 
-function filterProducts() {
-    const searchTerm = searchTermInput.value.toLowerCase().trim(); // trim rmvs spaces
+// Filter products based on search term
+const filterProducts = () => {
+    const searchTerm = searchTermInput.value.toLowerCase().trim();
 
     if (searchTerm === '') {
-        displayProducts(allProducts); // If search bar is empty, display all products
+        displayProducts(allProducts);
         return;
     }
 
-    // Filter products based on the search bar content, it can be by either description or name
     const filtered = allProducts.filter(product =>
         product.name.toLowerCase().includes(searchTerm) || 
         product.description.toLowerCase().includes(searchTerm) 
     );
 
-    displayProducts(filtered); // Display the products with the argument of the search bar
-}
+    displayProducts(filtered);
+};
 
-// Event Listener for inputs
-
-// Listen for input changes, everytime the user types the products will load again
+document.addEventListener('DOMContentLoaded', fetchProducts);
 searchTermInput.addEventListener('input', filterProducts);
