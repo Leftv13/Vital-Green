@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user'); 
 
 
-// Middleware for preventing clients accessing the admin page
+// Middleware for preventing clients from accessing the admin page
 const protectAdminView = async (req, res, next) => {
   try {
     const token = req.cookies?.accessToken;
