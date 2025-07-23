@@ -39,8 +39,8 @@ const orderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'processing', 'delivered', 'delivering', 'completed', 'cancelled'],
-    default: 'pending'
+    enum: ['Procesando', 'Enviada', 'En Camino', 'Completada', 'Cancelada'],
+    default: 'Procesando'
   }
 }, { timestamps: true });
 

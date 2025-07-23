@@ -17,5 +17,7 @@ function updateCartCount(count) {
     }
 }
 
+
+
 // Llama a esta función cuando se añade/elimina un producto del carrito
 // updateCartCount(2); // Por ejemplo, si tienes 2 ítems

@@ -3,7 +3,7 @@
     const checkoutBtn = document.getElementById('checkoutBtn');
     const itemsContainer = document.getElementById('checkout-items-container');
     const totalElement = document.getElementById('checkout-total');
-    
+    const resume = document.getElementById('resume');
     
         // --- Pdf stuff ---
     const generateInvoicePDF = (cart, total) => {
@@ -15,6 +15,7 @@
         doc.text('Recibo de Compra - Vital Green', 55, 25);
         doc.setFontSize(12);
         doc.text(`Fecha: ${new Date().toLocaleDateString('es-ES')}`, 15, 45);
+        doc.text(`Cliente: `, 15, 45);
 
         // Crear la tabla con los productos
         const tableColumn = ["Producto", "Cantidad", "Precio Unitario", "Subtotal"];
@@ -51,18 +52,33 @@
     // Gets the saved products from the localstorage
     const cartString = localStorage.getItem('shoppingCart');
     
+    // Parse the cart and check URL parameters at the beginning
+    const cart = JSON.parse(cartString);
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkoutStatus = urlParams.get('status');
 
-    // If theres no products then display this
-    if (!cartString) {
-        itemsContainer.innerHTML = '<p>Tu orden esta en proceso. Pronto te llamaremos para concretar el envio..</p>';
+    if (checkoutStatus === 'success') {
+        // If the page was reloaded after a successful purchase
+        itemsContainer.innerHTML = `
+            <div style="text-align: center; padding: 2rem; border: 2px dashed var(--primary-green); border-radius: 0.5rem;">
+                <h2 style="color: var(--primary-green); margin-bottom: 1rem;">¡Compra Realizada con Éxito!</h2>
+                <p style="margin-bottom: 2rem;">Tu orden ha sido creada con exito. Haz click aqui para ver el estado de tu orden!</p>
+                <a href="/orders" style="display: inline-block; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; background-color: var(--primary-green); color: var(--white);">Ver Mis Órdenes</a>
+            </div>
+        `;
+        resume.style.display = 'none'; // Hide the resume button
+        totalElement.style.display = 'none'; 
+        checkoutBtn.style.display = 'none';
+
+    } else if (!cart || cart.length === 0) {
+        // If the cart is genuinely empty (not after a purchase)
+        itemsContainer.innerHTML = '<p>Tu carrito de compras está vacío.</p>';
         totalElement.textContent = 'Total: $0.00';
         checkoutBtn.disabled = true;
         checkoutBtn.style.backgroundColor = '#9ca3af';
-       
-    }else {
-        // Convert the string batck to an object
-        const cart = JSON.parse(cartString);
 
+    } else {
+        // If there are items in the cart, display them
         let total = 0;
 
         // For each product found in the local storage creates a div inside of the parent elemnt
@@ -93,8 +109,7 @@
 
 
             try {
-                // El backend espera el carrito completo y el total.
-                // Ya los tienes en las variables 'cart' y 'total'.
+                //POST request to create the order
                 const { data } = await axios.post('/api/orders', 
                     {
                        
@@ -108,11 +123,13 @@
                 createNotification(false, data.message);
 
               
-                // GenPDF y limpieza del localStorage solo si la orden se creó con éxito.
+                // Generate the PDF invoice
                 generateInvoicePDF(cart, total);
                 localStorage.removeItem('shoppingCart');
                 
-                setTimeout(() => location.reload(), 3000);
+                setTimeout(() => {
+                    window.location.href = '/checkout?status=success';
+                }, 3000);
 
             } catch (error) {
                

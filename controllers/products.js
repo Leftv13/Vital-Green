@@ -3,17 +3,26 @@
 const express = require('express');
 const Product = require('../models/product'); 
 const productRouter = express.Router(); 
-const { protect } = require('../middleware/auth')
+const { protect, checkUser } = require('../middleware/auth') // Importamos checkUser
 
 
-//GET
-productRouter.get('/', async (req, res) => {
+// GET all products. Filters by stock for regular users, shows all for admins
+productRouter.get('/', checkUser, async (req, res) => { // Usamos checkUser en lugar de protect
   try {
-    const products = await Product.find({});
-    return res.json(products); 
+    const query = {};
+
+    // If there is NO user OR the user is NOT an admin, filter by stock.
+    // This is safe because if req.user is undefined, the check stops.
+    if (!req.user || req.user.role !== 'admin') {
+      query.stock = { $gt: 0 };
+    }
+
+    const products = await Product.find(query);
+
+    return res.json(products);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Error interno del servidor al obtener productos' });
+    return res.status(500).json({ message: 'Error interno del servidor al obtener los productos' });
   }
 });
 

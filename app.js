@@ -56,7 +56,7 @@ app.use('/verify/:id/:token', express.static(path.join(__dirname, "views", "veri
 app.use("/signup", express.static(path.join(__dirname, "views", "signup")));
 app.use("/login", express.static(path.join(__dirname, "views", "login")));
 app.use("/checkout", protect, express.static(path.join(__dirname, "views", "checkout")));
-app.use("/order", protect, express.static(path.join(__dirname, "views", "orders")));
+app.use("/orders", protect, express.static(path.join(__dirname, "views", "orders")));
 app.use("/admin", protectAdminView, express.static(path.join(__dirname, "views", "admin"))); 
 app.use("/store", express.static(path.join(__dirname, "views", "store"))); 
 app.use("/components", express.static(path.join(__dirname, "views", "components")));

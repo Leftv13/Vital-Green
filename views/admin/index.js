@@ -13,9 +13,9 @@ const productStockInput = document.querySelector('#product-stock');
 // const productCategoryInput = document.querySelector('#product-category');
 // const productIsAvailableInput = document.querySelector('#product-is-available');
 
-//////////////////////
+////////////:)////////
 //  Products Logic //
-////////////////////
+///////////:)///////
 
 // SearchBar & GET
 
@@ -55,7 +55,7 @@ const displayProducts = (productsToDisplay) => {
 // Get petition 
 const fetchProducts = async () => {
     try {
-        const response = await axios.get('/api/products'); 
+        const response = await axios.get('/api/products', { withCredentials: true }); 
         allProducts = response.data; 
         displayProducts(allProducts); 
     } catch (error) {
@@ -118,7 +118,7 @@ form.addEventListener('submit', async e => {
                 {
                     name: productNameInput.value,
                     price: productPriceInput.value,
-                    description: productDescriptionInput.erIDvalue,
+                    description: productDescriptionInput.value,
                     image_url: productImageInput.value,
                     stock: productStockInput.value
                 },
@@ -143,7 +143,7 @@ form.addEventListener('submit', async e => {
         document.querySelector('details').setAttribute('close', true);
 
         // Updates the list after we added the product so it is shown
-        getProducts();
+        fetchProducts();
     } catch (error) {
         console.error('Error al guardar producto:', error);
         if (error.response) {
@@ -168,7 +168,7 @@ const deleteProduct = async (productId) => {
           notification.innerHTML = ''
       },5000)
 
-      getProducts();
+      fetchProducts();
       
 
   } catch (error) {
@@ -238,12 +238,12 @@ const fetchOrdersForAdmin = async () => {
             <td style="padding: 0.75rem;">$${order.total.toFixed(2)}</td>
             <td style="padding: 0.75rem; text-align: center;">
             <select class="order-status-select" data-order-id="${order._id}" style="padding: 0.5rem; border-radius: 0.25rem; border: 1px solid #ccc;">
-              <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pendiente</option>
-              <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>En proceso</option>
-              <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Enviada</option>
-              <option value="delivering" ${order.status === 'delivering' ? 'selected' : ''}>En Camino</option>
-              <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completada</option>
-              <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelada</option>
+              <option value="Procesando" ${order.status === 'Procesando' ? 'selected' : ''}>Procesando</option>
+              <option value="Enviada" ${order.status === 'Enviada' ? 'selected' : ''}>Enviada</option>
+              <option value="En Camino" ${order.status === 'En Camino' ? 'selected' : ''}>En Camino</option>
+              <option value="Completada" ${order.status === 'Completada' ? 'selected' : ''}>Completada</option>
+              <option value="Cancelada" ${order.status === 'Cancelada' ? 'selected' : ''}>Cancelada</option>
+              
             </select>
              <button class="view-order-products-btn" data-order-id="${order._id}" style="background-color: #17a2b8; color: white; border: none; padding: 0.5rem; border-radius: 0.25rem; cursor: pointer; margin-left: 0.5rem;">Ver</button>
             </td>

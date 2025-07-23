@@ -8,6 +8,16 @@ border-width: 0;
 border-style: solid;
 }
 
+:root {
+  --primary-green: #4CAF50; 
+  --secondary-green: #8BC34A; 
+  --text-dark: #333;
+  --text-light: #f4f4f4;
+  --bg-light: #f9f9f9;
+  --white: #ffffff;
+  --gray-border: #ddd;
+}
+
 .hid{
     display: none;
 }
@@ -947,3 +957,111 @@ code {
 
 
 
+@media (max-width: 600px) {
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    z-index: 1000;
+  }
+  
+  .contenedor {
+    background: white;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  #close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: red;
+    color: white;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  #form, #modalForm, #formLogin {
+    background-color: #F1EBE5;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 5rem auto 2rem;
+  }
+  
+  .formInputs {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  
+    #form, #modalForm, #formLogin {
+      padding: 1rem;
+      margin-top: 4rem;
+    }
+    
+    .formInputs {
+      padding: 0.6rem;
+    }
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #5ea330;
+      height: 4rem;
+      z-index: 10;
+    }
+    
+    #navContent {
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    #logoImgNav {
+      width: 3rem;
+      height: 3rem;
+      transition: all 0.3s ease;
+    }
+
+
+      #logoImgNav {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      
+      #navright {
+        gap: 1rem;
+      }
+      
+      .alinks {
+        font-size: 0.9rem;
+      }
+    
+      
+}

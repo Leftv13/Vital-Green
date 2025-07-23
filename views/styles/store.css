@@ -7,6 +7,16 @@
     border-color: #e5e7eb;
 }
 
+:root {
+    --primary-green: #4CAF50; 
+    --secondary-green: #8BC34A; 
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --bg-light: #f9f9f9;
+    --white: #ffffff;
+    --gray-border: #ddd;
+}
+
 h1, h2, p{
     margin: 0;
 }
@@ -303,7 +313,7 @@ border-radius: 0.5rem;
 font-size: 20px;
 background-color: #bac6be;
 }
-
+ 
 #footer{
     display: flex;
     justify-content: center;
@@ -469,6 +479,8 @@ transition: all 0.2s ease-in;
 
 
 
+
+
 .prodBtn:hover{
     background-color: #5a9d2d;
 }
@@ -479,6 +491,8 @@ transition: all 0.2s ease-in;
         width: 100%;
         font-size: 0.8rem;
     }
+
+    
 
     #goUp{
        
@@ -777,18 +791,26 @@ transition: all 0.2s ease-in;
 
 
     .footer {
-        background-color: var(--text-dark); /* Color oscuro para contraste */
+        background-color: var(--text-dark);
         color: var(--white);
-        padding: 50px 0 20px;
+        padding: 50px 1rem 20px; /* Añadido padding lateral para móviles */
         font-size: 0.9em;
-    }
-    
-    .footer-grid {
+        width: 100%;
+      }
+      
+      .footer-container {
+        max-width: 1200px; /* O el ancho máximo que prefieras */
+        margin: 0 auto; /* Esto centrará el contenido */
+        width: 100%;
+      }
+      
+      .footer-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 30px;
         margin-bottom: 40px;
-    }
+        margin-left: 12rem;
+      }
     
     .footer-col h3 {
         color: var(--primary-green);
@@ -836,5 +858,12 @@ transition: all 0.2s ease-in;
         border-top: 1px solid rgba(255,255,255,0.1);
         color: #aaa;
     }
-    
+
+    @media (max-width: 400px){
+ 
+        .footer-grid {
+            grid-template-columns: 1fr;
+            margin-left: 0;
+        }
+    }
     

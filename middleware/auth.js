@@ -55,5 +55,29 @@ const protect = async (request, res, next) =>{
   }    
 };
 
+// Middleware to optionally check for a user without blocking the request
+//only used on the store so non users can check it
+const checkUser = async (req, res, next) => {
+  const token = req.cookies?.accessToken;
 
-module.exports = { protect, protectAdminView };
+  // If no token is present, just continue as a guest
+  if (!token) {
+    return next();
+  }
+
+  try {
+    // If a token exists, verify it
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const user = await User.findById(decoded.id).select('-passwordHash');
+
+    // If user is found, attach it to the request object
+    if (user) {
+      req.user = user;
+    }
+  } catch (error) {
+    // If token is invalid or expired, we ignore it and proceed as a guest
+  }
+  next();
+};
+
+module.exports = { protect, protectAdminView, checkUser };
