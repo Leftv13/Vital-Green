@@ -1140,9 +1140,13 @@ code {
   }
   
   
-    #form, #modalForm, #formLogin {
+    #form, #modalForm {
       padding: 1rem;
       margin-top: 60%;
+    }
+
+    #formLogin{
+      margin-top: 0;
     }
     
     .formInputs {
