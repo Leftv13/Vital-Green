@@ -85,6 +85,17 @@ const addToCart = (e) => {
   renderCartItems(); 
 };
 
+const removeItemFromCart = (productId) => {
+
+  const productIndex = cart.findIndex(item => item.id === productId);
+
+  if (productIndex !== -1) {
+    cart.splice(productIndex, 1);
+    renderCartItems();
+    updateCartCounter();
+  }
+};
+
 //Event Listeners 
 prodList.addEventListener('click', (e) => {
   if (e.target.classList.contains('prodBtn')) {
@@ -94,11 +105,10 @@ prodList.addEventListener('click', (e) => {
 
 cartTableBody.addEventListener('click', (e) => {
   if (e.target.classList.contains('delBtn')) {
-    const idToDelete = e.target.dataset.id;
-    cart = cart.filter(item => item.id !== idToDelete);
-    renderCartItems();
+    removeItemFromCart(); 
   }
 });
+
 
 emptyCartButton.addEventListener('click', () => {
     cart = [];
