@@ -11,7 +11,7 @@ const createVerificationEmailHTML = (userId, token) => {
   const verificationLink = `${PAGE_URL}/verify/${userId}/${token}`;
   // La URL del logo debe ser pública y accesible desde internet.
   // He subido tu logo a un hosting de imágenes para que funcione.
-  const logoUrl = 'https://i.ibb.co/L9wLzht/VITALGREEN-SINFONDO.png';
+  const logoUrl = 'https://i.ibb.co/sd2hBryN/VITALGREEN-SINFONDO.png';
 
   return `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
