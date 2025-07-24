@@ -15,7 +15,7 @@
         doc.text('Recibo de Compra - Vital Green', 55, 25);
         doc.setFontSize(12);
         doc.text(`Fecha: ${new Date().toLocaleDateString('es-ES')}`, 15, 45);
-        doc.text(`Cliente: `, 15, 45);
+       
 
         // Crear la tabla con los productos
         const tableColumn = ["Producto", "Cantidad", "Precio Unitario", "Subtotal"];
