@@ -486,275 +486,7 @@ transition: all 0.2s ease-in;
 }
 
 
-@media (max-width: 400px){
-    .cart{
-        width: 100%;
-        font-size: 0.8rem;
-    }
 
-    
-
-    #goUp{
-       
-        height: 8%;
-        width: 15%;
-        margin: 0.8rem;
-    }
-
-    #goUp:hover{
-        height: 9%;
-        width: 17%;
-    }
-
-
-    #hero{
-    
-        height:  calc(100vh - 4rem);
-        /* Aqui le estoy diciendo que ocupe el 100% de la pantalla menos los 4rem de la navbar */
-        background-image: url("https://media.glamour.mx/photos/651520d3d1935d9b14952b7c/4:3/w_1908,h_1431,c_limit/tomar-jugo-verde.jpg");
-        background-position: center;
-        background-size: cover;
-        padding: 0 1rem;
-    }
-    
-    #heroContent{
-        height: 100%;
-        display: flex;
-         max-width: 80rem;
-         margin: 0 auto;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        color: black;
-    }
-    
-    #heroTitle{
-        font-size: 1.70rem;
-        width: 100%;
-        text-align: center;
-    }
-    
-    #heroSubTitle{
-        font-size: 1rem;
-        text-align: center;
-    }
-    
-    #heroInput{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        background-color: rgb(235, 231, 231);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        width: 80%;
-    }
-    
-    input{
-        width: 80%;
-        background-color: transparent;
-        outline: none;
-        font-size: 0.8rem;
-    }
-
-    .pdImg{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0.5rem 0.5rem 0 0;
-}
-
-#products{
-    min-height: 100vh;
-    padding: 0 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#prodContainer{
-    max-width: 80rem;
-    margin: 0 auto;
-}
-
-#prodTitle{
-    font-weight: 700;
-    font-size: 2rem;
-    text-align: center;
-
-}
-
-#prodList{
-    display: flex;
-    flex-direction: column;
-    
-    margin: 0;
-    padding: 0; 
-    list-style: none;
-    justify-self: center;
-    align-items: center;
-    gap: 2rem;
-}
-
-.prodItem{
-    background-color: #f4f4f5;
-    border-radius: 0.5rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    transform: scale(1);
-    transition: all 0.2s ease-in;
-}
-
-.prodItem:hover{
-    transform: scale(1.01);
-   
-}
-
-.prodImg{
-    height: 40%;
-}
-
-.prodInfo{
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-   justify-content: space-evenly;
-    padding: 1rem;
-    font-size: 1.2rem;
-}
-
-.infoTitle, .infoPrice{
-    font-weight: 700;
-}
-
-.infoDiv{
-    border-bottom: 1px solid white;
-}
-
-.prodBtn{
-padding: 1rem;
-border-radius: 0.5rem;
-font-weight: 700;
-background-color: #67b434;
-color: white;
-cursor: pointer;
-transition: all 0.2s ease-in;
-}
-
-#infoContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 80rem;
-    gap: 1rem;
-    margin: 0 auto;
-    font-size: 1rem;
-    
-}
-
-
-.prodBtn:hover{
-    background-color: #5ca02f;
-}
-
-.pdImg{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0.5rem 0.5rem 0 0;
-}
-
-#products{
-    min-height: 100vh;
-    padding: 0 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#prodContainer{
-    max-width: 80rem;
-    margin: 0 auto;
-}
-
-#prodTitle{
-    font-weight: 700;
-    font-size: 2rem;
-    text-align: center;
-
-}
-
-#prodList{
-    margin: 0;
-    padding: 0; 
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    align-items: center;
-    gap: 2rem;
-}
-
-.prodItem{
-    background-color: #f4f4f5;
-    border-radius: 0.5rem;
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    transform: scale(1);
-    transition: all 0.2s ease-in;
-}
-
-.prodItem:hover{
-    transform: scale(1.01);
-   
-}
-
-.prodImg{
-    height: 40%;
-}
-
-.prodInfo{
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-   justify-content: space-evenly;
-    padding: 1rem;
-    font-size: 0.8rem;
-}
-
-.infoTitle, .infoPrice{
-    font-weight: 700;
-}
-
-.prodBtn{
-padding: 1rem;
-border-radius: 0.5rem;
-font-weight: 700;
-background-color: #67b434;
-color: white;
-cursor: pointer;
-transition: all 0.2s ease-in;
-}
-
-
-.prodBtn:hover{
-    background-color: #599c2c;
-}
-#navtitle{
-    display: none;
-
-}
-
-#navright{
-    gap: 1rem;
-}
-
-}
 
 /* --- Estilos para el contador del carrito --- */
 .cart-icon-container {
@@ -859,11 +591,108 @@ transition: all 0.2s ease-in;
         color: #aaa;
     }
 
-    @media (max-width: 400px){
+    
+
+
+/* Estilos para el botón de hamburguesa */
+.hamburger-button {
+    display: none; /* Oculto por defecto en escritorio */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-button svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.nav-right-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
  
-        .footer-grid {
-            grid-template-columns: 1fr;
-            margin-left: 0;
-        }
+/* =================================== */
+/* == STYLES RESPONSIVE  ============= */
+/* =================================== */
+
+@media (max-width: 768px) {
+
+    /* --- Navbar --- */
+    .hamburger-button {
+        display: block;
     }
+
+    .nav-right-wrapper {
+        gap: 1rem; /* Reducimos el espacio en móvil */
+    }
+
+    /* Ocultamos los enlaces y los preparamos para el menú desplegable */
+    #navright {
+        display: none;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 4rem);
+        background-color: rgba(40, 82, 19, 0.98);
+        backdrop-filter: blur(5px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /* Esta clase la añade el JS para mostrar el menú */
+    #navright.show {
+        display: flex;
+    }
+
+    #navtitle {
+        display: none;
+    }
+
+    /* --- Product Grid --- */
+    #prodList {
+        flex-direction: column; /* Apila los productos verticalmente */
+    }
+
+    .prodItem {
+        width: 90%; /* Cada producto ocupa casi todo el ancho */
+        max-width: 400px; /* Pero no demasiado en tablets */
+    }
+
+    /* --- Info Section --- */
+    #infoContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* --- Cart --- */
+    .cart {
+        width: 100%; /* El carrito ocupa más espacio en móvil */
+        max-width: 450px;
+    }
+
+    /* --- Footer --- */
+    .footer-grid {
+        grid-template-columns: 1fr; /* Apila las columnas del footer */
+        margin-left: 0;
+        text-align: center;
+    }
+
+    #logoImg {
+        width: 80%;
+    }
+
+    tr{
+        font-size: 10px;
+    }
+}
+
+
+
     

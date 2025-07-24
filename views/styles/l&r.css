@@ -46,7 +46,9 @@ body{
 }
 
 #form{
-    margin-top: 4rem;;
+    margin-top: 25%; 
+    align-self: center; 
+    width: 50%;
     background-color: #F1EBE5;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -54,7 +56,7 @@ body{
     flex-direction: column;
     gap: 1rem;
     box-shadow: 0 0 10px 2px ;
-    width: 100%;
+   
 }
 
 #modalForm{
@@ -183,7 +185,7 @@ select{
 
 #form-btn{
     width: 100%;
-    background-color: #aba9a7;
+    background-color: #62b50e;
     color: black;
     border-radius: 0.5rem;
     padding: 1rem;
@@ -191,7 +193,7 @@ select{
 }
 
 #form-btn:hover{
- background-color: #a8a7a7;
+ background-color: #559e0c;
 }
 
 #form-btn:disabled{
@@ -216,6 +218,12 @@ cursor: not-allowed;
 #logoImg{
     margin-top: 7.5rem;
     width: 35%;
+}
+
+#logoImgLogin {
+    width: 35%;
+    align-self: center; /* Centra la imagen verticalmente en el contenedor flex */
+    display: block; /* Asegura que la imagen se comporte como un bloque */
 }
 
 #logoImgNav{
@@ -310,9 +318,7 @@ a{
 
 @media ( max-width: 700px ) {
 
-  #logoImg{
-   display: none;
-}
+
 
     #logoImgNav{
         width: 40%;
@@ -322,9 +328,38 @@ a{
         display: none;
     }
 
-    #navright{
-        gap: 1rem;
-    
+      /* --- Navbar --- */
+      .hamburger-button {
+        display: block;
+    }
+
+    .nav-right-wrapper {
+        gap: 1rem; /* Reducimos el espacio en móvil */
+    }
+
+    /* Ocultamos los enlaces y los preparamos para el menú desplegable */
+    #navright {
+        display: none;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 4rem);
+        background-color: rgba(40, 82, 19, 0.98);
+        backdrop-filter: blur(5px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /* Esta clase la añade el JS para mostrar el menú */
+    #navright.show {
+        display: flex;
+    }
+
+    #navtitle {
+        display: none;
     }
 
     .alinks{
@@ -878,6 +913,11 @@ code {
 }
 
 
+#logoImgLogin {
+  width: 35%;
+}
+
+
 /* Order Styles */
 
 #order-list-section{
@@ -954,6 +994,91 @@ code {
 }
 
 
+.hamburger-button {
+  display: none;
+}
+
+.hamburger-button svg {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.nav-right-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* --- Estilos para MÓVIL (cuando la pantalla es de 768px o menos) --- */
+@media (max-width: 768px) {
+
+  #logoImgLogin {
+    display: none;  
+  }
+
+  #order-list-section{
+
+   max-width: 100%;
+   padding: 10px;
+  }
+
+  #orderTable{
+    box-shadow: none;
+    padding: 10px;
+  }
+
+  /* 1. Mostramos el botón de hamburguesa */
+  .hamburger-button {
+      display: block;
+      background-color: #5ea330;
+  }
+
+  .nav-right-wrapper {
+      gap: 1rem; /* Reducimos el espacio en móvil */
+  }
+
+  /* 2. Ocultamos los enlaces de escritorio y los preparamos para el menú desplegable */
+  #navright {
+      display: none;
+      position: fixed;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 4rem);
+      background-color: rgba(40, 82, 19, 0.98);
+      backdrop-filter: blur(5px);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+  }
+
+  /* 3. Esta clase la añade el JS para mostrar el menú */
+  #navright.show {
+      display: flex;
+  }
+
+  /* 4. Opcional: Ocultamos el título para dar más espacio */
+  #navtitle {
+      display: none;
+  }
+}
+
+
+  @media (max-width: 400px){
+
+      .footer-grid {
+          grid-template-columns: 1fr;
+          margin-left: 0;
+      }
+
+      #logoImg{
+          width: 80%;
+      }
+  }
+
+
 
 
 
@@ -1017,7 +1142,7 @@ code {
   
     #form, #modalForm, #formLogin {
       padding: 1rem;
-      margin-top: 4rem;
+      margin-top: 60%;
     }
     
     .formInputs {
@@ -1062,6 +1187,12 @@ code {
       .alinks {
         font-size: 0.9rem;
       }
+    
+      #logoImg{
+        display: none;
+     }
+
+
     
       
 }

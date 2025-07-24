@@ -14,24 +14,36 @@
 
 
 
-    <nav id="navbar">
-        <div id="navContent">
-            <div id="navleft">
-              <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
-            <h1 id="navtitle">Vital Green </h1>
-            </div>    
+  <nav id="navbar">
+    <div id="navContent">
+        <div id="navleft">
+            <img id="logo" src="/images/VITALGREEN-SINFONDO.png" alt="logoimg">
+            <h1 id="navtitle">Vital Green - Checkout</h1>
+        </div>
+
+        <!-- Contenedor para todos los elementos de la derecha -->
+        <div class="nav-right-wrapper">
+            <!-- Los enlaces que se ocultarán en móvil -->
             <div id="navright">
                 <a href="/"><p class="alinks">Home</p></a>
                 <a href="/store"><p class="alinks">Tienda</p></a>
-                <a href="/login"><p class="alinks">Iniciar Sesión</p></a>             
+                <a href="/signup"><p class="alinks">Registro</p></a>
             </div>
+
+            <!-- El botón de hamburguesa -->
+            <button id="hamburger-btn" class="hamburger-button" aria-label="Abrir menú">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </div>
-    </nav>
+    </div>
+</nav>
     <div id="notification" style="position: fixed; left: 0px;  right: 0px; top: 5rem;"></div>
 <div class="container" style=" justify-content: space-evenly;">
 
 
-  <form id="formLogin" style="align-self: center;">
+  <form id="formLogin" style="align-self: center; ">
     <h1 id="formTitle">Inicio de Sesion</h1>
    
 
@@ -69,7 +81,7 @@
 
   </form>
 
-  <img id="logoImg" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green" style="display: flex; align-self: center; margin-top: 0;">
+  <img id="logoImgLogin" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green" >
 
 </div>
 
@@ -77,5 +89,6 @@
 
 <script src="./index.js"></script>
 <script type="module" src="../components/notification.js"></script>
+<script type="module" src="../components/navbar.js"></script>
 </body>
 </html>

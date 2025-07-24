@@ -33,20 +33,25 @@
         <div id="navContent">
             <div id="navleft">
                 <img id="logo" src="/images/VITALGREEN-SINFONDO.png" alt="logoimg">
-            <h1 id="navtitle">Vital Green </h1>
+                <h1 id="navtitle">Vital Green - Admin</h1>
             </div>
     
-            <div id="navright">
+            <!-- Contenedor para todos los elementos de la derecha -->
+            <div class="nav-right-wrapper">
+                <!-- Los enlaces que se ocultarán en móvil -->
+                <div id="navright">
+                    <a href="/orders"><p class="alinks">Órdenes</p></a>
+                    <a href="/store"><p class="alinks">Tienda</p></a>
+                    <a href="/login"><p class="alinks">Iniciar Sesión</p></a>
+                </div>
     
-                
-    
-                <a href="/"><p class="alinks">Home</p></a>
-                <a href="/store"><p class="alinks">Tienda</p></a>
-                <a href="/admin"><p class="alinks">Admin</p></a>
-                <a href="/login"><p class="alinks">Iniciar Sesión</p></a>
-    
-                <!-- Contenedor para el ícono y el contador -->
-                
+                <!-- El botón de hamburguesa -->
+                <button id="hamburger-btn" class="hamburger-button" aria-label="Abrir menú">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -135,15 +140,15 @@
                     <div class="testimonial-item">
                         <p>"Desde que pruebo Vital Green, siento más energía y mi digestión ha mejorado muchísimo. ¡Son deliciosos y muy prácticos!"</p>
                         <div class="client-info">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/吴司马孙武.jpg" alt="Ana R." class="client-avatar">
-                            <span>- Sun Tzu.</span>
+                            <img src="https://i.ibb.co/RTswqxmM/IMG-20250724-WA0010.jpg" alt="Ana R." class="client-avatar">
+                            <span>- Arón B.</span>
                         </div>
                     </div>
                     <div class="testimonial-item">
                         <p>"¡Mi dosis diaria de salud! Me encanta la variedad y lo frescos que llegan. ¡Súper recomendados!"</p>
                         <div class="client-info">
-                            <img src="https://curiosidadesdelahistoriablog.com/wp-content/uploads/2015/05/belisarius_mosaic.jpg?w=1107&h=1200&crop=1" alt="Juan M." class="client-avatar">
-                            <span>- Belisarius.</span>
+                            <img src="https://i.ibb.co/4wgjT23s/IMG-20250724-WA0011.jpg" alt="Juan M." class="client-avatar">
+                            <span>- Miguel A.</span>
                         </div>
                     </div>
                 </div>
@@ -157,7 +162,7 @@
                     <img src="/images/VITALGREEN-SINFONDO.png" alt="Sobre Vital Green" class="about-img">
                     <p>En Vital Green, creemos firmemente en el poder de la naturaleza para nutrir y transformar vidas. Impulsados por la pasión de Jacqueline por una vida sana y el bienestar, hemos creado una línea de jugos verdes 100% naturales, elaborados con amor y dedicación en Caracas.</p>
                     <p>Nuestro compromiso es ofrecerte una opción deliciosa y conveniente para que incorpores más nutrientes a tu día a día, ayudándote a sentirte más enérgico, ligero y saludable. ¡Únete a nuestra misión de bienestar!</p>
-                    <a href="/store" class="btn btn-secondary">Más sobre nosotros</a>
+                    <a href="/store" class="btn btn-secondary">Ver la Tienda Completa</a>
                 </div>
             </div>
         </section>
@@ -208,5 +213,6 @@
     </footer>
 
     <script src="./index.js"></script>
+    <script src="../components/navbar.js"></script>
 </body>
 </html>

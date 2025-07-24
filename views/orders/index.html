@@ -7,19 +7,31 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>Document</title>
+    <title>Órdenes</title>
 </head>
 
 <nav id="navbar">
     <div id="navContent">
         <div id="navleft">
-          <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
-          <h1 id="navtitle">Vital Green - Panel de Usuario</h1>
+            <img id="logo" src="/images/VITALGREEN-SINFONDO.png" alt="logoimg">
+            <h1 id="navtitle">Vital Green - Órdenes</h1>
         </div>
 
-        <div id="navright">
-          <a href="/store"><p class="alinks">Ver Tienda</p></a>
-          <a href=""><p  id="logout" class="alinks">Cerrar Sesión</p></a>
+        <!-- Contenedor para todos los elementos de la derecha -->
+        <div class="nav-right-wrapper">
+            <!-- Los enlaces que se ocultarán en móvil -->
+            <div id="navright">
+                <a href="/"><p class="alinks">Home</p></a>
+                <a href="/store"><p class="alinks">Tienda</p></a>
+                <a href="/logout"><p class="alinks">Cerrar Sesión</p></a>
+            </div>
+
+            <!-- El botón de hamburguesa -->
+            <button id="hamburger-btn" class="hamburger-button" aria-label="Abrir menú">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </div>
     </div>
 </nav>
@@ -39,7 +51,7 @@
         <h2 id="listTitle" style="margin-bottom: 1rem;">Gestión de Órdenes</h2>
         <hr style="margin: 1rem 0; border-color: #bdbbb9;">
     
-        <div style="max-height: 50vh; overflow-y: auto; background-color: #fefefe; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px 2px;">
+        <div id="orderTable" style="max-height: 50vh; overflow-y: auto; background-color: #fefefe; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 10px 2px;">
             <table style="width: 100%; text-align: left; border-collapse: collapse;">
                 <thead>
                     <tr style="border-bottom: 2px solid #bdbbb9;">
@@ -64,5 +76,6 @@
       </section> -->
 
 <script src="./index.js"></script>
+<script src="../components/navbar.js"></script>
 </body>
 </html>

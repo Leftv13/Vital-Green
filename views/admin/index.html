@@ -28,19 +28,30 @@
 
     
     <nav id="navbar">
-        <div id="navContent">
-            <div id="navleft">
-              <img id="logoImgNav" src="/images/VITALGREEN-SINFONDO.png" alt="Logo Vital Green">
+      <div id="navContent">
+          <div id="navleft">
+              <img id="logo" src="/images/VITALGREEN-SINFONDO.png" alt="logoimg">
               <h1 id="navtitle">Vital Green - Admin</h1>
-            </div>
-    
-            <div id="navright">
-              <a href="/store"><p class="alinks">Ver Tienda</p></a>
-              <a><p class="alinks" id="logout">Cerrar Sesión</p></a>
-            </div>
-        </div>
-    </nav>
-
+          </div>
+  
+          <!-- Contenedor para todos los elementos de la derecha -->
+          <div class="nav-right-wrapper">
+              <!-- Los enlaces que se ocultarán en móvil -->
+              <div id="navright">
+                  <a href="/"><p class="alinks">Home</p></a>
+                  <a href="/store"><p class="alinks">Tienda</p></a>
+                  <a href="/logout"><p class="alinks">Cerrar Sesión</p></a>
+              </div>
+  
+              <!-- El botón de hamburguesa -->
+              <button id="hamburger-btn" class="hamburger-button" aria-label="Abrir menú">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+              </button>
+          </div>
+      </div>
+  </nav>
 
 
   
@@ -226,6 +237,7 @@
     
     <script type="module" src="./index.js"></script>
     <script type="module" src="../components/notification.js"></script>
+    <script src="../components/navbar.js"></script>
 
 
 

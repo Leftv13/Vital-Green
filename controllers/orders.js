@@ -9,7 +9,7 @@ const { protect } = require('../middleware/auth');
 // GET all orders (for admin or user)
 orderRouter.get('/', protect, async (req, res) => {
   try {
-    //create an empty object to hold the query parameters
+    //create an empty object to hold the orders
     const allOrders = {};
 
     //If the user that sent the request is an admin, fetch all orders
@@ -29,11 +29,6 @@ orderRouter.get('/', protect, async (req, res) => {
 orderRouter.get('/:id', protect, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
-
-    if (!order) {
-      return res.status(404).json({ message: 'Orden no encontrada' });
-    }
-
     return res.json(order);
   } catch (error) {
     console.error(error);
@@ -73,8 +68,8 @@ orderRouter.post('/', protect, async (req, res) => {
     // Create the order
     const order = new Order({
       user_id: req.user._id,
-      products: cart.map(item => ({
-        product_id: item._id,
+      products: cart.map(item => ({  //.map does the same as forEach but returns a new array with the actual values 
+        product_id: item._id,          
         name: item.name,
         quantity: item.quantity,
         price: item.price,

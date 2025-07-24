@@ -419,6 +419,75 @@ body {
     color: #aaa;
 }
 
+
+/* Estilos para el botón de hamburguesa */
+.hamburger-button {
+    display: none; /* Oculto por defecto en escritorio */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+      margin-bottom: 20px;
+    }
+    }
+
+    /* Mostramos el botón de hamburguesa en móvil */
+    .hamburger-button {
+        display: block;
+        z-index: 1001; /* Para que esté por encima del menú */
+    }
+
+    .hamburger-button svg {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    /* Ocultamos los enlaces de escritorio y los preparamos para el menú móvil */
+    .nav-links-container {
+        display: none; /* Oculto hasta que se active */
+        position: fixed;
+        top: 4rem; /* Justo debajo de la navbar */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 4rem);
+        background-color: rgba(40, 82, 19, 0.95); /* Fondo semitransparente */
+        backdrop-filter: blur(5px); /* Efecto de desenfoque */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /* Clase que se añadirá con JS para mostrar el menú */
+    .nav-links-container.show {
+        display: flex;
+    }
+
+    #navtitle{
+        display: none;
+    
+
+    }
+
+    @media (max-width: 400px){
+ 
+        .footer-grid {
+            grid-template-columns: 1fr;
+            margin-left: 0;
+        }
+
+        #logoImg{
+            width: 80%;
+        }
+    }
+
+
 /* Responsividad básica */
 @media (max-width: 768px) {
     /* .navbar .container {
@@ -543,3 +612,85 @@ a{
     color: white;
     text-decoration: none;
 }
+
+.hamburger-button {
+    display: none;
+  }
+  
+  .hamburger-button svg {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+  }
+  
+  .nav-right-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  /* --- Estilos para MÓVIL (cuando la pantalla es de 768px o menos) --- */
+  @media (max-width: 768px) {
+  
+    #order-list-section{
+  
+     max-width: 100%;
+     padding: 10px;
+    }
+  
+    #orderTable{
+      box-shadow: none;
+      padding: 10px;
+    }
+  
+    /* 1. Mostramos el botón de hamburguesa */
+    .hamburger-button {
+        display: block;
+        background-color: #5ea330;
+    }
+  
+    .nav-right-wrapper {
+        gap: 1rem; /* Reducimos el espacio en móvil */
+    }
+  
+    /* 2. Ocultamos los enlaces de escritorio y los preparamos para el menú desplegable */
+    #navright {
+        display: none;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 4rem);
+        background-color: rgba(40, 82, 19, 0.98);
+        backdrop-filter: blur(5px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+  
+    /* 3. Esta clase la añade el JS para mostrar el menú */
+    #navright.show {
+        display: flex;
+    }
+  
+    /* 4. Opcional: Ocultamos el título para dar más espacio */
+    #navtitle {
+        display: none;
+    }
+  }
+  
+  
+    @media (max-width: 400px){
+  
+        .footer-grid {
+            grid-template-columns: 1fr;
+            margin-left: 0;
+        }
+  
+        #logoImg{
+            width: 80%;
+        }
+
+    }
+  
